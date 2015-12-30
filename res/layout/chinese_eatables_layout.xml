@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/eatable_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:id="@+id/eatable_top_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/eatables_linear_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/chinese_top_title" />
+
+        <include layout="@layout/search_top_layout" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/eatable_bottom_linear"
+        android:layout_below="@id/eatable_top_section"
+        android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/eatables_listView"
+            android:layout_width="130dip"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:choiceMode="singleChoice"
+            android:divider="@drawable/eatable_listitem_divide"
+            android:listSelector="#00000000"
+            android:scrollbars="none" >
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <GridView
+                android:id="@+id/eatables_gridView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true"
+                android:horizontalSpacing="5dip"
+                android:listSelector="#00000000"
+                android:numColumns="5"
+                android:padding="10dip"
+                android:verticalSpacing="5dip" >
+            </GridView>
+
+            <LinearLayout
+                android:id="@+id/eatable_tc_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@drawable/bg_tc_details"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <ScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="7" >
+
+                        <LinearLayout
+                            android:id="@+id/eatable_linear_tcdetails"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </ScrollView>
+
+                    <!-- 确定 取消按钮 -->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="2"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="20dp" >
+
+                        <Button
+                            android:id="@+id/eatable_tcdetail_btn_certain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/btn_bottom_bg"
+                            android:paddingBottom="7dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="7dp"
+                            android:text="@string/eatable_tc_queren"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/eatable_tcdetail_btn_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:background="@drawable/btn_bottom_bg"
+                            android:paddingBottom="7dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="7dp"
+                            android:text="@string/eatable_tc_quxiao"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/eatable_bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:minHeight="40dip"
+        android:orientation="horizontal"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:paddingTop="5dip" >
+
+        <Button
+            android:id="@+id/eatable_btn_remark"
+            android:layout_width="95dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_bottom_bg_style_selector"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingTop="21dp"
+            android:text="@string/eatable_fujia"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/eatable_btn_finishdish"
+            android:layout_width="95dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="85dp"
+            android:background="@drawable/btn_bottom_bg_style_selector"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingTop="21dp"
+            android:text="@string/eatable_yidiancai"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/eatable_btn_back"
+            android:layout_width="95dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="170dp"
+            android:background="@drawable/btn_bottom_bg_style_selector"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:paddingTop="21dp"
+            android:text="@string/back"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

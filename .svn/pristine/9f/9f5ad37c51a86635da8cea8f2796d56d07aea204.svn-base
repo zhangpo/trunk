@@ -1,0 +1,80 @@
+package cn.com.choicesoft.bean;
+
+public class SingleMenu {
+	
+	public static SingleMenu singleMenu = null;
+	
+	private SingleMenu(){}
+	
+	public static SingleMenu getMenuInstance(){
+		if(null == singleMenu){
+			singleMenu = new SingleMenu();
+		}
+		return singleMenu;
+		
+	}
+	
+	private String menuOrder;
+	private String manCounts;
+	private String womanCounts;
+	private String tableNum;
+	private String userCode;
+//	private String orderId;
+
+//	public String getOrderId(){
+//		return  orderId;
+//	}
+//	public  void  setOrderId(String orderId){
+//		this.orderId=orderId;
+//	}
+
+	public String getMenuOrder() {
+		return menuOrder;
+	}
+
+	public void setMenuOrder(String menuOrder) {
+		this.menuOrder = menuOrder;
+	}
+
+	public String getManCounts() {
+		return manCounts;
+	}
+
+	public void setManCounts(String manCounts) {
+		this.manCounts = manCounts;
+	}
+
+	public String getWomanCounts() {
+		return womanCounts;
+	}
+
+	public void setWomanCounts(String womanCounts) {
+		this.womanCounts = womanCounts;
+	}
+
+	public String getTableNum() {
+		return tableNum;
+	}
+
+	public void setTableNum(String tableNum) {
+		this.tableNum = tableNum;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	@Override
+	public String toString() {
+		return "SingleMenu [menuOrder=" + menuOrder + ", manCounts="
+				+ manCounts + ", womanCounts=" + womanCounts + ", tableNum="
+				+ tableNum + ", userCode=" + userCode + "]";
+	}
+	
+	
+
+}

@@ -1,0 +1,85 @@
+<!-- 菜单主页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF" >
+    
+    <include 
+        android:id="@+id/dishactivity_linear_top"
+        android:layout_alignParentTop="true"
+        layout="@layout/top_title"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/main_view_title" />
+
+    <RelativeLayout
+        android:id="@+id/main_view_title"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/dishactivity_linear_top"
+        android:gravity="center" >
+
+        <HorizontalScrollView
+            android:id="@+id/main_lay_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none" >
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" >
+
+                <TableRow
+                    android:id="@+id/main_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent" />
+            </TableLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dip"
+        android:layout_marginRight="5dip"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/btnRemark"
+            android:layout_width="80dip"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/btn_bottom_bg"
+            android:padding="3dip"
+            android:text="@string/yidiancai_beizhu"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="80dip"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/btn_bottom_bg"
+            android:padding="3dip"
+            android:text="@string/back"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnYiDian"
+            android:layout_width="80dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/btn_bottom_bg"
+            android:padding="3dip"
+            android:text="@string/yidian"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</RelativeLayout>

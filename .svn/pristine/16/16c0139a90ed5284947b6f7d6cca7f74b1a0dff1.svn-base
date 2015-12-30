@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/big_window_layout"
+              android:layout_width="400dip"
+              android:layout_height="200dip"
+              android:baselineAligned="false"
+              android:orientation="horizontal">
+
+    <ListView
+            android:id="@+id/tc_float_window_makeup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+    </ListView>
+
+    <ListView
+            android:id="@+id/tc_float_window_recommend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+    </ListView>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="李小龙"/>
+
+</LinearLayout>

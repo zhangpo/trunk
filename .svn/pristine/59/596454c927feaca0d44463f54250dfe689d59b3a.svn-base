@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+            android:id="@+id/topLinearLyout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/table_bg_red"
+            android:orientation="horizontal"
+            android:padding="3dp" >
+            <Button
+                    android:id="@+id/gu_qing_btn_back"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/back_bg" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="45dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:text="@string/gu_qing_setting"
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+    </LinearLayout>
+    <include layout="@layout/search_top_layout"/>
+    <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gu_qing_exp_list">
+
+    </ExpandableListView>
+    <ListView android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/gu_qing_list"
+              android:visibility="gone">
+
+    </ListView>
+</LinearLayout>

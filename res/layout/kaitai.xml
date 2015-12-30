@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#000000"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/center"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:gravity="center"
+            android:layout_margin="9dp"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_people"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"/>
+
+        <EditText
+                android:id="@+id/kaitaiNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/please_start_people"
+                android:inputType="number"
+                android:padding="10dip"
+                android:textColor="#000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+        <Button
+                android:id="@+id/oneStepConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bottom_bg_normal"
+                android:text="@string/confirm"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
+
+        <Button
+                android:id="@+id/oneStepCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/btn_bottom_bg_normal"
+                android:text="@string/cancle"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
+    </LinearLayout>
+
+</LinearLayout>

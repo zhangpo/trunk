@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vip_layout8_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/yixuan_linear_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:minHeight="40dp">
+
+        <Button
+            android:id="@+id/vip_jiSuanYE"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_taiwei"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/vip_jiSuanYE"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/vip_jiSuanJF"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_cuicai"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/vip_jiSuanJF"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/vip_cardXX"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_huacai"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/vip_cardXX"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/vip_ConfirmPayment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_jiacai"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/vip_ConfirmPayment"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+</LinearLayout>

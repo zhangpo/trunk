@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vip_layout8_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:gravity="left|center">
+
+        <Button
+            android:id="@+id/vip_jiSuanYE"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/but_left_bg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="@string/vip_jiSuanYE" />
+
+        <Button
+            android:id="@+id/vip_jiSuanJF"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/but_centre_bg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="@string/vip_jiSuanJF" />
+
+        <Button
+            android:id="@+id/vip_jiSuanXJ"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/but_right_bg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="@string/vip_jiSuanXJ" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/vip_cardXX"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/but_left_bg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="@string/vip_cardXX" />
+
+        <Button
+            android:id="@+id/vip_ConfirmPayment"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/but_right_bg"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:text="@string/vip_ConfirmPayment" />
+    </LinearLayout>
+
+</LinearLayout>

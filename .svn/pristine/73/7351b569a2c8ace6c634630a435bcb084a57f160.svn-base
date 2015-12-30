@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/listview_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:text="菜名" />
+
+    <TextView
+        android:id="@+id/listview_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:padding="5dip"
+        android:text="20" />
+
+    <TextView
+        android:id="@+id/listview_item_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:gravity="center"
+         android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:text="@string/money_or_unit" />
+
+</LinearLayout>

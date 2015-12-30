@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/sub_res_table_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/sub_res_table_Number"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:ems="10"
+            android:inputType="phone"
+            android:maxLength="11" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/sub_res_table_Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/sub_res_table_phone"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/textView2"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/sub_res_table_phone"
+            android:layout_alignBottom="@+id/sub_res_table_phone"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/textView2"
+            android:text="@string/yuding_phone1"
+            android:gravity="right"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/sub_res_table_Number"
+            android:layout_alignBottom="@+id/sub_res_table_Number"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000000"
+            android:gravity="right"
+            android:text="@string/yuding_sqNum" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="330dp"
+        android:gravity="center"
+        android:layout_gravity="right"
+        android:padding="5dp" >
+
+        <Button
+            android:id="@+id/sub_res_table_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button_background"
+            android:text="@string/confirm"
+            android:textColor="#FFF"/>
+        <Button
+            android:id="@+id/sub_res_table_cancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button_background"
+            android:text="@string/cancle" 
+            android:textColor="#FFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>

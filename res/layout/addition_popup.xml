@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 菜品附加项 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/lay_index_top"
+              android:layout_width="match_parent"
+              android:background="#FFFFFF"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        <TextView
+                android:textSize="20sp"
+                android:textColor="#990023"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/additions"/>
+    </LinearLayout>
+
+    <!-- content -->
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="9"
+            android:orientation="horizontal">
+
+        <!-- 显示附加项信息 -->
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3">
+
+            <ListView
+                    android:id="@+id/list_small_pop_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- 右侧按钮 -->
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:gravity="center"
+                android:visibility="gone"
+                android:background="#888888"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/btn_small_pop_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirm"/>
+
+            <Button
+                    android:id="@+id/btn_small_pop_cancle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancle"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

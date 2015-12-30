@@ -1,0 +1,124 @@
+package cn.com.choicesoft.constants;
+
+import android.content.Context;
+import android.os.Environment;
+import cn.com.choicesoft.util.SharedPreferencesUtils;
+
+/**
+ * 常量类
+ *
+ */
+public class Constants {
+    public static String RES_PATH_SDCARD_DIR= Environment.getExternalStorageDirectory()+"/ChoiceSoft/";// 资源文件在sdcard中的路径
+    public static String RES_PATH_MEMORY_DIR="/data" + Environment.getDataDirectory().getAbsolutePath() + "/ChoiceSoft/";//资源在内存中的路径(日志文件在安装目录中的路径)="/sdcard/data/cn.com.choicesoft.phone/log";// 日志文件在sdcard中的路径
+
+    public static String getURL(Context context){
+		return SharedPreferencesUtils.getServerAddress(context);
+	}
+
+	public static String getHTTP_URL(Context context){
+		return SharedPreferencesUtils.getWaitUrl(context);
+	}
+	
+	public static final String NAMESPACE = "http://service.web.choice.com";// 新辣道命名空间
+	
+	
+	public static class FastWebService{
+		
+		public static final String specialRemark_WSDL = "ChoiceWebService/services/HHTSocket?/specialRemark";//特别备注 (全单附加项)
+		
+		public static final String soldOut_WSDL = "ChoiceWebService/services/HHTSocket?/soldOut";//沽清
+		
+		public static final String notTerminateOrder_WSDL = "ChoiceWebService/services/HHTSocket?/getOrdersBytabNum";//获取指定台位的未结算账单
+		
+		public static final String prePrint_WSDL = "ChoiceWebService/services/HHTSocket?/priPrintOrder";//预打印
+		
+		public static final String promptDish_WSDL = "ChoiceWebService/services/HHTSocket?/callPubitem";//催菜
+		
+		public static final String getOrdersBytabNum_WSDL = "ChoiceWebService/services/HHTSocket?/getOrdersBytabNum";//获取指定台位的未结算账单
+		
+		public static final String Senddish_WSDL = "ChoiceWebService/services/HHTSocket?/sendc";//发送菜品
+		
+		public static final String CHANGETtablestate_WSDL = "ChoiceWebService/services/HHTSocket?/changTableState";//改变台位状态
+		
+		public static final String INITDISHCLASS_WSDL = "ChoiceWebService/services/HHTSocket?/getFoodKind";//菜品类别
+		
+		public static final String INITDISH_WSDL = "ChoiceWebService/services/HHTSocket?/getProducts";//具体菜品
+		
+		public static final String INITTABLE_WSDL = "ChoiceWebService/services/HHTSocket?/listTables";//获取台位与区域
+		
+		public static final String REGISTER_WSDL = "ChoiceWebService/services/HHTSocket?/registerDeviceId";//注册
+		
+		public static final String LOGIN_WSDL = "ChoiceWebService/services/HHTSocket?/login";//登录
+		
+		public static final String CHECKAUTH_WSDL = "ChoiceWebService/services/HHTSocket?/checkAuth";//验证授权
+		
+		public static final String STARTTABLE_WSDL = "ChoiceWebService/services/HHTSocket?/startc";//开台
+		
+		public static final String LOGOUT_WSDL = "ChoiceWebService/services/HHTSocket?/loginOut";//注销
+
+		public static final String QUERY_WHOLE_PRODUCTS_WSDL = "ChoiceWebService/services/HHTSocket?/queryWholeProducts";//全单菜品查询接口 （全单有附加项）
+
+		public static final String Activate_WSDL = "http://61.174.28.122:9100/choicereg.asmx/choicereg";//登录界面激活
+	}
+	
+	public static class FastMethodName{
+		
+		public static final String activate_METHODNAME = "choicereg";//登陆界面激活方法名
+		
+		public static final String specialRemark_METHODNAME = "specialRemark";//特别备注 (全单附加项)方法名
+		
+		public static final String soldOut_METHODNAME = "soldOut";//沽清方法名
+		
+		public static final String notTerminateOrder_METHODNAME = "getOrdersBytabNum";//获取指定台位的未结算账单方法名
+		
+		public static final String prePrint_METHODNAME = "priPrintOrder";//预打印方法名
+		
+		public static final String PromptDish_METHODNAME = "callPubitem";//催菜方法名
+		
+		public static final String GetOrdersBytabNum_METHODNAME = "getOrdersBytabNum";//获取指定台位的未结算账单方法名
+		
+		public static final String Senddish_METHODNAME = "sendc";//发送菜品方法名
+		
+		public static final String ChangeTableState_METHODNAME = "changTableState";//改变台位状态方法名
+		
+		public static final String ACHIEVEDISH_METHODNAME = "getProducts";//获取菜品方法名
+		
+		public static final String ACHIEVEDISHCLASS_METHODNAME = "getFoodKind";//获取菜品类别方法名
+		
+		public static final String ACHIEVETABLE_METHODNAME = "listTables";//获取台位和区域的方法名
+
+		public static final String REGISTERDEVICEID_METHODNAME = "registerDeviceId";//登注册方法名
+		
+		public static final String LOGIN_METHODNAME = "login";//登录方法名
+		
+		public static final String CHECKAUTH_METHODNAME = "checkAuth";//验证授权方法名
+		
+		public static final String STARTTABLE_METHODNAME = "startc";//开台方法名
+		
+		public static final String LOGOUT_METHODNAME = "loginOut";//登出方法名
+
+		public static final String QUERY_WHOLE_PRODUCTS = "queryWholeProducts";//全单菜品查询接口 （全单有附加项）
+	}
+
+
+	/**
+	 * 等位接口
+	 */
+	public static class WaitHttp {
+		/**
+		 * 获取叫号信息
+		 */
+		public static final String QUERY_NO="waitSeat/queryNO.do";
+		/**
+		 * 取号
+		 */
+		public static final String TAKE_NO="waitSeat/printNO.do";
+		/**
+		 * 就餐，过号
+		 */
+		public static final String CANCEL_SEAT="waitSeat/cancelSeat.do";
+	}
+	
+	
+}

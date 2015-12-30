@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="30dp"
+            android:text="@string/dia_ftpsetting_instruction"
+            android:textColor="#333"
+            android:textSize="18sp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/dia_ftpsetting_username"
+                    android:textColor="#333"
+                    android:textSize="18sp"/>
+
+            <EditText
+                    android:id="@+id/dia_et_ftpsettingusername"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="@string/dia_ftpsetting_username_please"
+                    android:singleLine="true">
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/dia_ftpsetting_pwd"
+                    android:textColor="#333"
+                    android:textSize="18sp"/>
+
+            <EditText
+                    android:id="@+id/dia_et_ftpsettingpwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/edittext_bg"
+                    android:ems="10"
+                    android:hint="@string/dia_ftpsetting_pwd_please"
+                    android:singleLine="true">
+            </EditText>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dip"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/dia_ftpsetting_ip"
+                android:textColor="#333"
+                android:textSize="18sp"/>
+
+        <EditText
+                android:id="@+id/dia_et_ftpsettingip"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:inputType="none"
+                android:hint="@string/dia_ftpsetting_ip_please"
+                android:singleLine="true"
+                android:textSize="18sp">
+        </EditText>
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#cccccc">
+
+        <Button
+                android:id="@+id/dia_btn_ftpsetcertainbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/confirm"/>
+
+        <Button
+                android:id="@+id/dia_btn_ftpsetcancelbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/cancle"/>
+    </LinearLayout>
+
+</LinearLayout>

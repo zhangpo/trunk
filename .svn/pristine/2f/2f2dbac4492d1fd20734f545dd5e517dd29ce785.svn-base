@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/expandablelist_group_item_background"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="4dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="4dp" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:text="既"
+                    android:textColor="@color/green"
+                    android:id="@+id/yidian_text_jijiao"/>
+
+            <TextView
+                android:id="@+id/yidian_expand_item_child_dishesname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:gravity="left|center_vertical"
+                android:singleLine="true"
+                android:text="牛栏山二锅头"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/yidian_expand_item_child_dishesprice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="90"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/yidian_expand_item_child_dishesunit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="元/份"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+            <TextView
+                    android:id="@+id/yidian_expand_item_child_dishescounts"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="22dp"
+                    android:maxWidth="60dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:background="@drawable/yidian_sumtextview_bg"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="100"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+            <ImageView
+                    android:id="@+id/yidian_expand_item_child_addition"
+                    android:layout_width="0dip"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/yidian_item_fujia" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/yidian_expand_item_child_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dip"
+            android:text="@string/yixuan_fujiaxiang"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/yidian_expand_item_child_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>

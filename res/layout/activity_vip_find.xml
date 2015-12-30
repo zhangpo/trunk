@@ -1,0 +1,157 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C1C1C1"
+    android:orientation="vertical"
+    tools:context=".VipFindActivity" >
+
+    <include
+        android:id="@+id/vip_top"
+        layout="@layout/vip_activity_order_top" />
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/topLayout"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@+id/botLayout"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@+id/vip_top"-->
+        <!--android:layout_marginTop="18dp"-->
+        <!--android:baselineAligned="false"-->
+        <!--android:orientation="horizontal" >-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/setAccLeftLayout"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="6"-->
+            <!--android:orientation="vertical" >-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/setARightLayout"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="4"-->
+            <!--android:orientation="vertical" >-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/setAccRightLayout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical" >-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center|right" >-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/vipANumText"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/vip_VIPNumText"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:visibility="invisible" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/vipANumText1"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:visibility="invisible" />-->
+            <!--</LinearLayout>-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5.0dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="3dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:gravity="center|right"
+                android:text="@string/findVipPhone"
+                android:textColor="#000000" />
+
+            <EditText
+                android:id="@+id/find_vip_phoneEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/dia_editor_n"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/find_vip_confirm"
+                android:layout_width="74dp"
+                android:layout_height="34dp"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/query_vipcard_btn_selector"
+                android:text="@string/confirm"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:background="@color/white"
+        android:layout_marginTop="5dip"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/find_vip_ts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dip"
+            android:layout_marginRight="40dip"
+            android:gravity="center|left"
+            android:text="@string/query_vip_hint_one"
+            android:textColor="#76EE00"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/find_vip_ts1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="↓.....↓"
+            android:textColor="#76EE00"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/find_vip_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/spinner_background"
+        android:spinnerMode="dropdown"
+        android:visibility="invisible" />
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+	<!-- 会员卡号，激活时间 ，有效期至，储值余额，积分余额 -->
+    <TextView
+        android:id="@+id/queryVipInfo_cardNum"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/queryVipInfo_jiHuoSj"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/queryVipInfo_youXiaoQZ"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/queryVipInfo_chuZhiYE"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/queryVipInfo_jiFenYE"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

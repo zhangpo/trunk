@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFFFFF"
+              android:orientation="vertical">
+
+    <include
+            android:id="@+id/yixuan_title"
+            layout="@layout/top_title"
+            android:clickable="false"/>
+
+    <include
+            android:visibility="gone"
+            layout="@layout/search_top_layout"/>
+
+    <LinearLayout
+            android:id="@+id/yixuan_linear_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yixuan_gongdiancaipin"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/yixuan_tv_dishcounts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yixuan_heji"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/yixuan_tv_moneycounts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yixuan_fujiaxiang"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:id="@+id/yixuan_tv_ordernumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/yixuan_linear_titleitem"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gainsboro"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+            <CheckBox
+                    android:id="@+id/yixuan_cb_quanxuan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/checkbox_yidian"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    />
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="@string/yixuan_pinming"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/yixuan_shuliang"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/yixuan_xiaoji"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"/>
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="20dip"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/yixuan_cuicai"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#F0F0F0"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp">
+        </LinearLayout>
+
+        <cn.com.choicesoft.util.SlideListView
+                android:id="@+id/yixuan_listview_alldishes"
+                android:layout_width="match_parent"
+                android:divider="#cccccc"
+                android:dividerHeight="1px"
+                android:layout_height="match_parent">
+        </cn.com.choicesoft.util.SlideListView>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/yixuan_linear_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="#FFFFFF"
+            android:gravity="center_horizontal"
+            android:minHeight="40dp">
+
+        <Button
+                android:id="@+id/yixuan_btn_table"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_taiwei"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_taiwei"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+        <Button
+                android:id="@+id/yixuan_btn_promptDish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_cuicai"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_cuicai"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+        <Button
+                android:id="@+id/yixuan_btn_clearDish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_huacai"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_huacai"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+        <Button
+                android:id="@+id/yixuan_btn_addDish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_jiacai"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_jiacai"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+            <!--<Button-->
+                <!--android:id="@+id/yixuan_btn_addDish1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/mainactivity_button_bg"-->
+                <!--android:drawableTop="@drawable/button_icon_jiacai"-->
+                <!--android:paddingLeft="1dp"-->
+                <!--android:paddingRight="1dp"-->
+                <!--android:text="打订单"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:textSize="14sp"/>-->
+
+        <Button
+                android:id="@+id/yixuan_btn_prePrint"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_dayin"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/preprinted"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+        <Button
+                android:id="@+id/yixuan_btn_preBalance"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_jiesuan"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_yujiesuan"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+
+
+        <Button
+                android:id="@+id/yixuan_btn_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/yixuan_back"
+                android:textColor="#FFFFFF"
+                android:textSize="19sp"
+                android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

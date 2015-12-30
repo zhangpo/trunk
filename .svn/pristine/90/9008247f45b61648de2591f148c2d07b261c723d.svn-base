@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- 当单选框可用，未选中 -->
+  <item android:state_checked="false" android:drawable="@drawable/but_2">
+  </item>
+  <!-- 当单选框可用，且被选中了时的背景 -->
+  <item android:state_checked="true" android:drawable="@drawable/but_d2">
+  </item>
+</selector>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/start_tabletitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/abs__ab_transparent_dark_holo"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="@string/state_start"
+        android:textColor="#33b5e5"
+        android:textSize="25sp" />
+<LinearLayout
+    	android:id="@+id/tai_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/taihao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/state_number"
+            android:textColor="#000000"
+            android:textSize="19sp" />
+        <cn.com.choicesoft.view.ClearEditText
+            android:id="@+id/start_taiEdit"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/edittext_bg"
+            android:digits="0123456789"
+            android:drawableRight="@drawable/delete_selector"
+            android:ems="10"
+            android:hint="@string/start_number"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="8dp"
+            android:textSize="18sp" />
+        <requestFocus />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/man_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/man_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/manNum"
+            android:textColor="#000000"
+            android:textSize="19sp" />
+
+        <cn.com.choicesoft.view.ClearEditText
+            android:id="@+id/start_manEdit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/edittext_bg"
+            android:digits="0123456789"
+            android:drawableRight="@drawable/delete_selector"
+            android:ems="10"
+            android:hint="@string/repast_man"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="8dp"
+            android:textSize="18sp" >
+        </cn.com.choicesoft.view.ClearEditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/woman_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/woman_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/womanNum"
+            android:textColor="#000000"
+            android:textSize="19sp" />
+
+        <cn.com.choicesoft.view.ClearEditText
+            android:id="@+id/start_womanEdit"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/edittext_bg"
+            android:digits="0123456789"
+            android:drawableRight="@drawable/delete_selector"
+            android:ems="10"
+            android:hint="@string/repast_woman"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="8dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+    
+
+    <CheckBox
+        android:id="@+id/check_isVip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/isVip"
+        android:textColor="#A20055"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/tidan_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/tidan"
+        android:textColor="#A20055"
+        android:textSize="20sp"
+        android:layout_gravity="center" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/tidanbianhao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/start_tishi"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:enabled="false"
+            android:lines="5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#aaa" >
+
+        <Button
+            android:id="@+id/ok_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="1px"
+            android:layout_marginTop="1px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_background"
+            android:text="@string/confirm" />
+
+        <Button
+            android:id="@+id/no_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_background"
+            android:text="@string/cancle" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,71 @@
+package cn.com.choicesoft.activity;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import cn.com.choicesoft.R;
+import cn.com.choicesoft.constants.TsData;
+import cn.com.choicesoft.fragment.VipFragment;
+import cn.com.choicesoft.fragment.Vip_botton_CO_Fragment;
+import cn.com.choicesoft.util.ExitApplication;
+import cn.com.choicesoft.util.SharedPreferencesUtils;
+import cn.com.choicesoft.util.ValueUtil;
+import cn.com.choicesoft.view.VipMsg;
+
+/**
+ * 会员支付界面
+ * @Author:M.c
+ * @CreateDate:2014-2-27
+ */
+public class PayMentActivity extends BaseActivity {
+	private FragmentManager manager=null;
+	private FragmentTransaction transaction=null;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		ExitApplication.getInstance().addActivity(this);
+		Bundle bundle=this.getIntent().getExtras();
+		Bundle theBun=bundle.getBundle("BillBundle");
+		manager=this.getFragmentManager();
+		transaction=manager.beginTransaction();
+		Vip_botton_CO_Fragment but_co=new Vip_botton_CO_Fragment();//支付按钮 fragment
+		but_co.setBundle(bundle);
+		transaction.add(R.id.pay_Ment_TopLayout, new VipFragment(),"VipFragment");//会员卡确认Fragment
+		transaction.add(R.id.pay_Ment_bottonLayout, but_co,"vip_botton_CO_Fragment");
+		transaction.commit();
+		setContentView(R.layout.activity_pay_ment);
+		//--------------------------------------------
+		TextView operatorNames=(TextView)this.findViewById(R.id.operatorNames);//操作员
+		operatorNames.setText(SharedPreferencesUtils.getOperator(this));
+		TextView tableNum=(TextView)this.findViewById(R.id.vip_taiweiText1);
+		tableNum.setText(theBun.getString("tableNum"));//设置台位
+		TextView orderId=(TextView)this.findViewById(R.id.vip_orderText1);
+		orderId.setText(theBun.getString("orderId"));//设置账单
+		//人数赋值
+		TextView manNum=(TextView)this.findViewById(R.id.vip_manText1);
+		TextView womanNum=(TextView)this.findViewById(R.id.vip_womanText1);
+		manNum.setText(ValueUtil.isEmpty(theBun.getString("manCounts"))?"":theBun.getString("manCounts"));//设置人数
+		womanNum.setText(ValueUtil.isEmpty(theBun.getString("womanCounts"))?"":theBun.getString("womanCounts"));//设置人数
+		VipMsg.iniVip(this, theBun.getString("tableNum"), R.id.settle_vipMsg_Img);
+		
+	}
+	/**
+	 * 重新返回事件
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		 if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0&&TsData.isEnd) {  
+			 Intent intent=new Intent(this,SettleAccountsActivity.class);
+			 intent.putExtras(this.getIntent().getExtras().getBundle("BillBundle"));
+			 startActivity(intent);
+			 this.finish();
+			 return true;  
+         } 
+		return super.onKeyDown(keyCode, event);
+	}
+
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="#0C7190"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:gravity="center"
+                android:orientation="vertical">
+            <Button
+                    android:id="@+id/yuding_refresh"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/refresh"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.00"
+                android:gravity="center"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textColor="#FFFFFF"
+                    android:text="@string/yuding_table"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <Button
+                    android:id="@+id/yuding_add"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/add_phone"/>
+
+            <Button
+                    android:id="@+id/yuding_sub"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/miss_phone"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFD840">
+
+        <TextView
+                android:id="@+id/yuding_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/yuding_phone"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+        <TextView
+                android:id="@+id/yuding_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/yuding_number"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <ListView
+            android:id="@+id/yuding_itemList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:divider="#949393"
+            android:dividerHeight="1px"
+            android:descendantFocusability="beforeDescendants"
+            android:cacheColorHint="#00000000">
+    </ListView>
+
+</LinearLayout>

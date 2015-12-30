@@ -1,0 +1,677 @@
+package cn.com.choicesoft.chinese.activity;
+
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.*;
+import cn.com.choicesoft.R;
+import cn.com.choicesoft.activity.ChioceActivity;
+import cn.com.choicesoft.activity.MainActivity;
+import cn.com.choicesoft.chinese.constants.ChineseConstants;
+import cn.com.choicesoft.chinese.util.ChineseResultAlt;
+import cn.com.choicesoft.chinese.util.ChineseServer;
+import cn.com.choicesoft.chinese.view.ChineseSoftSettingDialog;
+import cn.com.choicesoft.util.*;
+import cn.com.choicesoft.view.ClearEditText;
+import cn.com.choicesoft.view.IpSettingDialog;
+import cn.com.choicesoft.view.IpSettingDialog.DialogIpClickListener;
+import cn.com.choicesoft.view.LoadingDialog;
+import cn.com.choicesoft.view.LoadingDialogStyle;
+
+import java.util.Date;
+import java.util.Map;
+
+/**
+ * 中餐登录界面
+ */
+public class ChineseWelcomeActivity extends FragmentActivity implements OnClickListener{
+
+	private static int RESULT_LOAD_IMAGE = 1;
+	private static int RESULT_LEFT_IMAGE = 100;
+
+	private Button setting, login,one,tow,three,four,five,six,seven,eight,nine,zero,succeed,reset,delete;
+	private EditText userName, userPassword;
+	private LoadingDialog mDialog = null;
+	private LoadingDialog loginDialog = null;
+	private ChineseSoftSettingDialog softset = null;
+	private RelativeLayout welcomelayout;
+	private LinearLayout linearLayout;//登陆输入界面
+	private TextView androidIDView;//该台设备的机器码
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        CSExceptionHandler.instance().init(getApplicationContext());//开启应用错误记录
+		ExitApplication.getInstance().addActivity(this);
+        new LanguageSetting().setting(this);
+        if (ChioceActivity.ispad) {
+            setContentView(R.layout.activity_welcome_pad);
+        } else {
+            setContentView(R.layout.activity_welcome);
+        }
+		initView();
+		initListener();
+		initLayout();
+		initData();
+	}
+
+
+	@Override
+	protected void onResume() {
+		setBackground();
+		super.onResume();
+	}
+
+	/**
+	 * 界面初始化
+	 */
+	public void initLayout(){
+		DisplayMetrics dmm = new DisplayMetrics();
+		// 获取窗口属性
+		getWindowManager().getDefaultDisplay().getMetrics(dmm);
+		Double downbl = ChioceActivity.ispad?0.08:0.22;
+		linearLayout.setY(((Double)(dmm.heightPixels*downbl)).floatValue());
+	}
+
+	/**
+	 * 数据初始化
+	 */
+	private void initData() {
+		androidIDView.setText(DeviceUuidFactory.getPhysicalId(this));
+
+		mDialog = new LoadingDialogStyle(this, "");
+		mDialog.setCancelable(true);
+
+		loginDialog = new LoadingDialogStyle(this, this.getString(R.string.in_the_login));
+		loginDialog.setCancelable(true);
+
+		//注册用的
+		boolean isRegistered = SharedPreferencesUtils.getIsRegister(this);
+		if(isRegistered){
+			setting.setVisibility(View.VISIBLE);
+		}else{
+			//调用接口去注册
+//			CList<Map<String, String>> clists = new CList<Map<String,String>>();
+//			clists.add("uuid", androidIDView.getText().toString());
+//			new Server().connect(this, Constants.FastMethodName.activate_METHODNAME, Constants.FastWebService.Activate_WSDL, clists, new OnServerResponse() {
+//
+//				@Override
+//				public void onResponse(String result) {
+//					mDialog.dismiss();
+//					Toast.makeText(WelcomeActivity.this, result, Toast.LENGTH_SHORT).show();
+//				}
+//
+//				@Override
+//				public void onBeforeRequest() {
+//					mDialog.show();
+//				}
+//			});
+		}
+
+
+		softset = ChineseSoftSettingDialog.newInstance(ChineseWelcomeActivity.this.getString(R.string.app_setting), new ChineseSoftSettingDialog.DialogClickListener() {
+
+			@Override
+			public void doUpdatedateItemClick() {
+				updateForFTP();
+			}
+			@Override
+			public void doTableClassify(final TextView classifyText) {
+				LinearLayout layout=(LinearLayout)ChineseWelcomeActivity.this.getLayoutInflater().inflate(R.layout.table_classify_set, null);
+				RadioGroup radio=(RadioGroup)layout.findViewById(R.id.table_Radio);
+				radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(RadioGroup paramRadioGroup, int paramInt) {
+						if(paramInt==R.id.table_classify_area){
+							SharedPreferencesUtils.setTableClass(ChineseWelcomeActivity.this, "1");
+							classifyText.setText(R.string.area);
+						}else if(paramInt==R.id.table_classify_lc){
+							SharedPreferencesUtils.setTableClass(ChineseWelcomeActivity.this, "2");
+							classifyText.setText(R.string.lc);
+						}else if (paramInt==R.id.table_classify_state) {
+							SharedPreferencesUtils.setTableClass(ChineseWelcomeActivity.this, "3");
+							classifyText.setText(R.string.state);
+						}
+						backKey();
+					}
+				});
+				RadioButton area=(RadioButton)layout.findViewById(R.id.table_classify_area);
+				RadioButton state=(RadioButton)layout.findViewById(R.id.table_classify_state);
+				RadioButton lc=(RadioButton)layout.findViewById(R.id.table_classify_lc);
+				if(SharedPreferencesUtils.getTableClass(ChineseWelcomeActivity.this).equals("1")){
+					area.setChecked(true);
+				}else if (SharedPreferencesUtils.getTableClass(ChineseWelcomeActivity.this).equals("2")) {
+					lc.setChecked(true);
+				}else if (SharedPreferencesUtils.getTableClass(ChineseWelcomeActivity.this).equals("3")) {
+					state.setChecked(true);
+				}
+				new Builder(ChineseWelcomeActivity.this,R.style.edittext_dialog).setTitle(R.string.settinggroup).setView(layout).show();
+			}
+			@Override
+			public void doIpItemClick() {
+				IpSettingDialog ipset = IpSettingDialog.newInstance(ChineseWelcomeActivity.this.getString(R.string.ip_setting), new DialogIpClickListener() {
+
+					@Override
+					public void doPositiveClick(String ipaddress, String port) {
+						String ip="^\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+								"((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)" +
+								"\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]" +
+								"\\d|25[0-5])\\b$";
+						String pt="^([0-9]|[1-9]\\d|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]" +
+								"\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$";
+						if(!ValueUtil.isEmpty(ipaddress) && !ValueUtil.isEmpty(port)){
+							if(!ipaddress.matches(ip)){
+								ToastUtil.toast(ChineseWelcomeActivity.this, R.string.ip_error);
+								return;
+							}else if(!port.matches(pt)){
+								ToastUtil.toast(ChineseWelcomeActivity.this,R.string.port_error);
+								return;
+							}
+							StringBuilder sb = new StringBuilder();
+							SharedPreferencesUtils.setServerAddress(ChineseWelcomeActivity.this, sb.append(ipaddress).append(":").append(port).toString());
+							Toast.makeText(ChineseWelcomeActivity.this, R.string.setting_success, Toast.LENGTH_SHORT).show();
+						}else{
+							Toast.makeText(ChineseWelcomeActivity.this,R.string.input_not_null, Toast.LENGTH_SHORT).show();
+						}
+					}
+
+					@Override
+					public void doNegativeClick() {
+
+					}
+				});
+				ipset.setCancelable(false);
+				ipset.show(getSupportFragmentManager(), "dialog");
+			}
+
+			@Override
+			public void doFtpItemClick() {
+				final AlertDialog dialog;
+				View layout = LayoutInflater.from(ChineseWelcomeActivity.this).inflate(R.layout.dia_ftpsetting, null);
+				final EditText etUserName = (EditText) layout.findViewById(R.id.dia_et_ftpsettingusername);
+				final EditText etPwd = (EditText) layout.findViewById(R.id.dia_et_ftpsettingpwd);
+				final EditText etIp = (EditText) layout.findViewById(R.id.dia_et_ftpsettingip);
+
+				StringBuilder sb = new StringBuilder();
+				sb.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpUsername(ChineseWelcomeActivity.this))?SharedPreferencesUtils.getFtpUsername(ChineseWelcomeActivity.this):"")
+				.append(":")
+				.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpPwd(ChineseWelcomeActivity.this))?SharedPreferencesUtils.getFtpUsername(ChineseWelcomeActivity.this):"")
+				.append("@")
+				.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpIp(ChineseWelcomeActivity.this))?SharedPreferencesUtils.getFtpIp(ChineseWelcomeActivity.this):"");
+
+				final Button  ensurebuton = (Button)layout.findViewById(R.id.dia_btn_ftpsetcertainbtn);
+				final Button  canclebuton = (Button)layout.findViewById(R.id.dia_btn_ftpsetcancelbtn);
+				dialog = new Builder(ChineseWelcomeActivity.this, R.style.edittext_dialog).setTitle(R.string.please_setting_ftp_adds).setMessage(ChineseWelcomeActivity.this.getString(R.string.current_ftp_adds) + sb.toString()).setView(layout).create();
+				ensurebuton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						String ftpuserName = etUserName.getText().toString();
+						String ftppassword = etPwd.getText().toString();
+						String ftpipValue = etIp.getText().toString();
+						String perl="^\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+								"((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)" +
+								"\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]" +
+								"\\d|25[0-5])\\b:([0-9]|[1-9]\\d|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]" +
+								"\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$";
+						if(ValueUtil.isNotEmpty(ftpipValue)&&ftpipValue.matches(perl)){
+							SharedPreferencesUtils.setFtpIp(ChineseWelcomeActivity.this, ftpipValue);
+							SharedPreferencesUtils.setFtpUsername(ChineseWelcomeActivity.this, ftpuserName);
+							SharedPreferencesUtils.setFtpPwd(ChineseWelcomeActivity.this, ftppassword);
+							Toast.makeText(ChineseWelcomeActivity.this, R.string.setting_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}else{
+							Toast.makeText(ChineseWelcomeActivity.this,R.string.ftp_example,Toast.LENGTH_SHORT).show();
+						}
+					}
+
+				});
+				canclebuton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+
+				dialog.show();
+
+
+			}
+
+			@Override
+			public void doFinishClick() {
+			}
+
+			@Override
+			public void doDeviceEncodeClick() {
+				Builder builder = new Builder(ChineseWelcomeActivity.this,R.style.edittext_dialog);
+				View view = LayoutInflater.from(ChineseWelcomeActivity.this).inflate(R.layout.device_number_layout, null);
+				final EditText editText = (EditText) view.findViewById(R.id.devicenumber_et_layout);
+				Button ensurebutton = (Button)view.findViewById(R.id.dia_btn_devicesetcertainbtn);
+				Button canclebutton = (Button)view.findViewById(R.id.dia_btn_devicesetcancelbtn);
+
+				String encodeStr = SharedPreferencesUtils.getDeviceId(ChineseWelcomeActivity.this);//得到设备编号
+				builder.setTitle(R.string.encodesetting).setMessage(ChineseWelcomeActivity.this.getString(R.string.current_encode) + encodeStr);
+				builder.setView(view);
+				final AlertDialog dialog =builder.create();
+
+				ensurebutton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						String deviceNumber = editText.getText().toString();
+						if(ValueUtil.isEmpty(deviceNumber)){
+							Toast.makeText(ChineseWelcomeActivity.this,R.string.input_not_null, Toast.LENGTH_SHORT).show();
+							return;
+						}else{
+							//在此处将deviceId存放进SharedPreferences
+							SharedPreferencesUtils.setDeviceId(ChineseWelcomeActivity.this, deviceNumber+"-1000");//TODO 中餐暂定配置编号为：1000
+							Toast.makeText(ChineseWelcomeActivity.this, R.string.encodesetting_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}
+					}
+				});
+				canclebutton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				dialog.show();
+
+			}
+			@Override
+			public void doSetBackground() {
+				Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+				startActivityForResult(i, RESULT_LOAD_IMAGE);
+			}
+			@Override
+			public void reSetBackground() {
+				reSetBackgound();
+			}
+			@Override
+			public void doSetLeftbg() {
+				Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				startActivityForResult(i, RESULT_LEFT_IMAGE);
+			}
+			@Override
+			public void reSetLeftbg() {
+				SharedPreferencesUtils.setLeftBgPath(ChineseWelcomeActivity.this,"NotFind");
+			}
+
+		});
+		softset.setCancelable(false);
+
+	}
+
+
+	/**
+	 * 控件初始化
+	 */
+	private void initView() {
+		userName = (EditText) findViewById(R.id.userName);
+		userPassword = (EditText) findViewById(R.id.userPassword);
+		if (ChioceActivity.ispad) {
+			EditTextUtil.hideKeyboard(userName);
+			EditTextUtil.hideKeyboard(userPassword);//隐藏软键盘
+		}
+		setting = (Button) findViewById(R.id.setting);
+		login = (Button) findViewById(R.id.welcome_login);
+		one = (Button) findViewById(R.id.welcome_one);
+		tow = (Button) findViewById(R.id.welcome_tow);
+		three = (Button) findViewById(R.id.welcome_three);
+		four = (Button) findViewById(R.id.welcome_four);
+		five = (Button) findViewById(R.id.welcome_five);
+		six = (Button) findViewById(R.id.welcome_six);
+		seven = (Button) findViewById(R.id.welcome_seven);
+		eight = (Button) findViewById(R.id.welcome_eight);
+		nine = (Button) findViewById(R.id.welcome_nine);
+		zero = (Button) findViewById(R.id.welcome_zero);
+		succeed = (Button) findViewById(R.id.welcome_succeed);
+		delete = (Button) findViewById(R.id.welcome_delete);
+		reset = (Button) findViewById(R.id.welcome_reset);
+		welcomelayout = (RelativeLayout)findViewById(R.id.welcome_activity_layout);
+		linearLayout=(LinearLayout)findViewById(R.id.welcome_Layout);
+		androidIDView = (TextView) this.findViewById(R.id.welcome_tv_androidId);
+	}
+
+	/**
+	 * 监听初始化
+	 */
+	private void initListener() {
+		setting.setOnClickListener(this);
+		login.setOnClickListener(this);
+		one.setOnClickListener(this);
+		tow.setOnClickListener(this);
+		three.setOnClickListener(this);
+		four.setOnClickListener(this);
+		five.setOnClickListener(this);
+		six.setOnClickListener(this);
+		seven.setOnClickListener(this);
+		eight.setOnClickListener(this);
+		nine.setOnClickListener(this);
+		zero.setOnClickListener(this);
+		succeed.setOnClickListener(this);
+		delete.setOnClickListener(this);
+		reset.setOnClickListener(this);
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.welcome_login:
+			loginClick();
+			break;
+		case R.id.setting:
+			LinearLayout layout=(LinearLayout)this.getLayoutInflater().inflate(R.layout.verify_pwd, null);
+			Button confirm=(Button)layout.findViewById(R.id.verify_pwd_confirm);
+			Button cancel=(Button)layout.findViewById(R.id.verify_pwd_cancel);
+			final ClearEditText pwdEdit=(ClearEditText)layout.findViewById(R.id.verify_pwd_Edit);
+			final AlertDialog alert=new Builder(this,R.style.edittext_dialog).setTitle(R.string.pwd_ver).setView(layout).show();
+			confirm.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View paramView) {
+					String pwd=pwdEdit.getText().toString();
+					String forPwd=DateFormat.getStringByDate(DateFormat.getDateBefore(new Date(), "day", 1, 3),"ddMMyy");
+					if(forPwd.equals(pwd)){
+						alert.dismiss();
+                        softset.show(getSupportFragmentManager(), "ChineseSoftSettingDialog");
+					}else{
+						Toast.makeText(ChineseWelcomeActivity.this, R.string.pwd_error, Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+			cancel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View paramView) {
+					backKey();
+				}
+			});
+			break;
+		case R.id.welcome_one:
+			numClick("1");
+			break;
+		case R.id.welcome_tow:
+			numClick("2");
+			break;
+		case R.id.welcome_three:
+			numClick("3");
+			break;
+		case R.id.welcome_four:
+			numClick("4");
+			break;
+		case R.id.welcome_five:
+			numClick("5");
+			break;
+		case R.id.welcome_six:
+			numClick("6");
+			break;
+		case R.id.welcome_seven:
+			numClick("7");
+			break;
+		case R.id.welcome_eight:
+			numClick("8");
+			break;
+		case R.id.welcome_nine:
+			numClick("9");
+			break;
+		case R.id.welcome_zero:
+			numClick("0");
+			break;
+		case R.id.welcome_delete:
+			if(userName.isFocused()){
+				int index=userName.getSelectionStart();
+				if(index>0){
+					userName.getText().delete(index-1, index);
+				}
+			}else if(userPassword.isFocused()){
+				int index=userPassword.getSelectionStart();
+				if(index>0){
+					userPassword.getText().delete(index-1, index);
+				}
+			}
+			break;
+		case R.id.welcome_reset:
+			userName.getText().clear();
+			userPassword.getText().clear();
+			userName.requestFocus();
+			break;
+		case R.id.welcome_succeed:
+			if(userName.isFocused()){
+				userPassword.requestFocus();
+			}else if(userPassword.isFocused()){
+				loginClick();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	/**
+	 * 登陆事件
+	 */
+	public void loginClick(){
+		final String username = userName.getText().toString();
+		if (ValueUtil.isEmpty(username)) {
+			Toast.makeText(ChineseWelcomeActivity.this, R.string.please_user_name,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		final String password = userPassword.getText().toString();
+		if (ValueUtil.isEmpty(password)) {
+			Toast.makeText(ChineseWelcomeActivity.this, R.string.input_user_password,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		if(ValueUtil.isEmpty(SharedPreferencesUtils.getServerAddress(this))){
+			Toast.makeText(ChineseWelcomeActivity.this, R.string.ip_not_null,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		CList<Map<String, String>> clist = new CList<Map<String,String>>();
+		clist.add("user", username);
+		clist.add("pass", password);
+		clist.add("oStr", "");
+		new ChineseServer().connect(ChineseWelcomeActivity.this,ChineseConstants.PLOGIN, clist, new OnServerResponse() {
+            @Override
+			public void onResponse(String result) {
+				loginDialog.dismiss();
+				if(!ValueUtil.isEmpty(result)){
+                    Map<String,String> map=new ComXmlUtil().xml2Map(result);
+                    if(ValueUtil.isEmpty(map)) {
+                        ToastUtil.toast(ChineseWelcomeActivity.this, R.string.login_error);
+                        return;
+                    }
+					if("1".equals(map.get("result"))){
+                        SharedPreferencesUtils.setUserCode(ChineseWelcomeActivity.this,username+"-"+password);
+                        String[] oStr=ChineseResultAlt.oStrAlt(map.get("oStr")).split("\\^");
+                        String mol=null;
+                        if("Y".equals(oStr[1])){//判断是否需要抹零
+                            mol=oStr[2];
+                        }
+                        SharedPreferencesUtils.setPadInformation(ChineseWelcomeActivity.this,mol,null,null,oStr[0]);
+						final Intent intent = new Intent(ChineseWelcomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        ChineseWelcomeActivity.this.finish();
+					}else{
+                        Toast.makeText(ChineseWelcomeActivity.this, map.get("oStr"), Toast.LENGTH_SHORT).show();
+                    }
+				}else{
+					Toast.makeText(ChineseWelcomeActivity.this, R.string.net_error, Toast.LENGTH_SHORT).show();
+				}
+			}
+			
+			@Override
+			public void onBeforeRequest() {
+				loginDialog.show();
+			}
+		});
+	}
+	/**
+	 * 输入事件
+	 * @param num
+	 */
+	public void numClick(String num){
+		if(userName.isFocused()){
+			userName.getText().insert(userName.getSelectionStart(), num);
+		}else if(userPassword.isFocused()){
+			userPassword.getText().insert(userPassword.getSelectionStart(), num);
+		}
+	}
+	
+	/**设置登陆界面背景图片
+	 * 
+	 */
+	private void setBackground() {
+		String path = SharedPreferencesUtils.getbackgroundPath(this);
+    	
+    	if (path!=null &&  !path.equals("NotFind")  ) {
+    		Bitmap bitmap = BitmapFactory.decodeFile(path);
+    		if (bitmap==null || bitmap.getByteCount()==0) {
+    			welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+			}else {
+				BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+	    		welcomelayout.setBackgroundDrawable(bitmapDrawable);
+			}
+		}else if (path!=null&&path.equals("NotFind")) {
+			welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+		}
+		
+	}
+	/**
+	 * 背景重置
+	 */
+	private void reSetBackgound() {
+		SharedPreferencesUtils.setbackgroundPath(ChineseWelcomeActivity.this,"NotFind");
+		welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+	}
+	
+	/**
+	 * 获取图片路径
+	 */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {//欢迎页面背景
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+ 
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+ 
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            ToastUtil.toast(getApplicationContext(), picturePath);
+            cursor.close();
+            if (picturePath!=null) {
+            	SharedPreferencesUtils.setbackgroundPath(ChineseWelcomeActivity.this,picturePath);
+			}
+        } else if (requestCode == RESULT_LEFT_IMAGE && resultCode == RESULT_OK && null != data) {//账单查询左侧
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            ToastUtil.toast(getApplicationContext(), picturePath);
+            cursor.close();
+            if (picturePath!=null) {
+            	SharedPreferencesUtils.setLeftBgPath(ChineseWelcomeActivity.this,picturePath);
+			}
+        	
+		}
+    }
+    /**
+     * FTP数据更新
+     */
+    public void updateForFTP(){
+//    	 String updateDataVersion(String deviceId,String userCode,String dataVersion);
+    	final LoadingDialog upDialog=new LoadingDialogStyle(ChineseWelcomeActivity.this, this.getString(R.string.update_data));
+    	upDialog.setCancelable(true);
+    	if(SharedPreferencesUtils.getFtpIp(ChineseWelcomeActivity.this)!=null){
+    		if(!(SharedPreferencesUtils.getFtpIp(ChineseWelcomeActivity.this).split(":").length>1)){
+    			Toast.makeText(ChineseWelcomeActivity.this, R.string.ftp_adds_error, Toast.LENGTH_LONG).show();
+    		}
+    		FTPDownLoad load=null;
+			try {
+				load=new FTPDownLoad();
+				load.downLoad(ChineseWelcomeActivity.this, SharedPreferencesUtils.getFtpIp(ChineseWelcomeActivity.this), SharedPreferencesUtils.getFtpUsername(ChineseWelcomeActivity.this), SharedPreferencesUtils.getFtpPwd(ChineseWelcomeActivity.this),new FTPDownLoad.ICallBack(){
+					@Override
+					public void runBack() {
+                        upDialog.dismiss();
+                        Toast.makeText(ChineseWelcomeActivity.this, R.string.update_success, Toast.LENGTH_LONG).show();
+					}
+					@Override
+					public void loseBack(String msg) {
+						upDialog.dismiss();
+						Looper.prepare();
+						Toast.makeText(ChineseWelcomeActivity.this,msg, Toast.LENGTH_LONG).show();
+						Looper.loop();
+					}
+				});
+			} catch (Exception e) {
+				Toast.makeText(ChineseWelcomeActivity.this, R.string.update_unsuccess, Toast.LENGTH_LONG).show();
+			}
+		}else{
+			Toast.makeText(ChineseWelcomeActivity.this, R.string.ftp_adds_not_null, Toast.LENGTH_LONG).show();
+		}
+    }
+    /**
+     * 两次不连续单击退出应用
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ExitApp();
+        }
+        return false;
+    }
+    private long exitTime = 0;
+
+    /**
+     * 退出当前应用程序
+     */
+    public void ExitApp() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(this,R.string.exit_app, Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            this.finish();
+            System.exit(0);
+        }
+
+    }
+	/**
+	 * 代码调用Back键
+	 */
+	@SuppressLint("CommitTransaction")
+	public void backKey(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				ChineseWelcomeActivity.this.getFragmentManager().beginTransaction();
+				Instrumentation inst = new Instrumentation(); 
+				inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);  
+			}
+		}).start();
+	}
+	
+}

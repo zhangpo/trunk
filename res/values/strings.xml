@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="net_error">你的网络似乎不太通畅，请检查你的网络连接</string>
+    <string name="hint_model_success">切换模式成功，重启后生效！</string>
+    <string name="app_name">CMenu</string>
+    <string name="system_error">Sorry..软件故障，请重新启动！</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome_title">员工登录</string>
+    <string name="user_name">&#160;员工编号:</string>
+    <string name="input_user_name">请输入工号</string>
+    <string name="user_password">密　　码:</string>
+    <string name="input_user_password">请输入密码</string>
+    <string name="issave">保存</string>
+    <string name="cancle">取消</string>
+    <string name="confirm">确定</string>
+    <string name="setting">设置</string>
+    <string name="server_address">服务器地址</string>
+    <string name="server_address_demo">192.168.0.110:8081</string>
+    <string name="additions">附加项</string>
+    <string name="additions2">附加项:</string>
+    <string name="search">搜索</string>
+    <string name="all_dishes">共点菜品</string>
+    <string name="zongji">总计：</string>
+    <string name="hint">提示</string>
+    <string name="hint_refresh">语言更新成功，重启后生效！</string>
+    <!-- Start Tai -->
+    <string name="manNum">先生：</string>
+    <string name="womanNum">女士：</string>
+    <string name="isVip">是否会员？</string>
+    <string name="start_tishi">提示：</string>
+    <!-- 台位管理界面 -->
+    <string name="thisTai">当前台位：</string>
+    <string name="tagTai">目标台位：</string>
+    <string name="tidan">提单</string>
+
+    <!-- title -->
+    <string name="all">所有</string>
+    <string name="pinming">品名</string>
+    <string name="number">数量</string>
+    <string name="price">价格</string>
+    <string name="unit">单位</string>
+    <string name="subtotal">小计</string>
+    <string name="handle">操作</string>
+    <string name="temporary_save">保存</string>
+    <string name="all_addtions">全单附加项</string>
+    <string name="all_billes">全单</string>
+    <string name="print">打印</string>
+    <string name="send">发送(即起)</string>
+    <string name="back">返 回</string>
+    <string name="yidian">已点菜品</string>
+    <string name="bingtai">并台</string>
+    <string name="change_tai">换台</string>
+    <string name="search_vip">会员查询</string>
+    <string name="retreat_food">退菜</string>
+    <string name="urge_food">催菜</string>
+    <string name="add_food">加菜</string>
+    <string name="diancai_order">点菜排行</string>
+    <string name="all_disheses">全部菜品</string>
+    <string name="sell_dishes">沽清菜品</string>
+    <string name="operator">操作员：</string>
+
+    <!-- 结算界面 -->
+    <!-- bill -->
+    <string name="tableNumber">台位号：</string>
+    <string name="peopleNum">人数：</string>
+    <!-- bill end -->
+    <!-- ListTable -->
+    <string name="greensNum">数量</string>
+    <string name="greensName">名称</string>
+    <string name="greensPrice">价格</string>
+    <!-- ListTable -->
+    <!-- button -->
+    <string name="SA_quXiaoPay">取消支付</string>
+    <string name="SA_quXiaoPrivilege">取消优惠</string>
+    <string name="SA_xianJin">现金</string>
+    <string name="SA_yinHangKa">银行卡</string>
+    <string name="SA_huiYuanKa">会员卡</string>
+    <string name="SA_yuDaYin">打印</string>
+    <string name="SA_back">返回</string>
+    <!-- button end -->
+    <!-- 金额显示 -->
+    <string name="tangSJE">堂食金额：</string>
+    <string name="heJJE">合计金额：</string>
+    <string name="moLJE">抹零金额：</string>
+    <string name="yingFJE">应付金额：</string>
+    <string name="zhaoL">找零金额：</string>
+    <!-- 金额显示 end -->
+    <!-- VipMent -->
+    <string name="vip_taiweiText">台位号：</string>
+    <string name="vip_orderText">账单号：</string>
+    <string name="vip_renShuText">人数：</string>
+    <string name="vip_yingFText">应付金额：</string>
+    <string name="vip_VIPNumText">会员卡号：</string>
+    <string name="vip_chuXuKText">储蓄余额：</string>
+    <string name="vip_quanYEText">券余额：</string>
+    <string name="vip_quanKeYYEText">券可用余额：</string>
+    <string name="vip_jiFenYEText">积分余额：</string>
+    <string name="vip_quanXinXText">可用电子券列表</string>
+    <string name="vip_cancelBut">取消</string>
+    <string name="vip_okBut">确认</string>
+    <string name="vip_payBut">支付</string>
+    <string name="Small_life">微生活</string>
+    <!-- 优惠券List表头 -->
+    <string name="vip_ticketId">券ID</string>
+    <string name="vip_ticketName">名称</string>
+    <string name="vip_ticketMoney">金额</string>
+    <string name="vip_ticketAmount">数量</string>
+    <!-- 优惠券List表头 end -->
+    <!-- VipMent end -->
+    <!-- vip_payMent -->
+    <string name="vip_payment_chuZhiKYYEText">储值可用余额：</string>
+    <string name="vip_payment_jiFenKYYEText">积分可用余额：</string>
+    <string name="vip_payment_xianJinXFText">现金消费：</string>
+    <string name="vip_payment_yeEXFText">余额消费：</string>
+    <string name="vip_payment_jiFenXFText">积分消费：</string>
+    <!-- button 确认支付 -->
+    <string name="vip_jiSuanYE">计算余额</string>
+    <string name="vip_jiSuanJF">计算积分</string>
+    <string name="vip_jiSuanXJ">计算现金</string>
+    <string name="vip_cardXX">卡信息</string>
+    <string name="vip_ConfirmPayment">确认支付</string>
+
+    <!-- button 确认支付 end -->
+    <!-- vip_payMent end -->
+    <!-- 根据手机号查询VIP -->
+    <string name="PopWin_phoneNumText">手机号码：</string>
+    <string name="PopWin_vipNumText">会员卡号：</string>
+    <string name="PopWin_phoneNumBut">查询</string>
+    <!-- 根据手机号查询VIP -->
+    <!-- 结算界面 end -->
+
+
+    <!-- 账单查询 -->
+    <string name="find_disName">菜品名</string>
+    <string name="find_disNum">数量</string>
+    <string name="find_disPri">价格</string>
+    <string name="find_disUnit">单位</string>
+    <string name="find_disAdd">附加项</string>
+    <string name="find_disPayFS">结算方式</string>
+    <string name="find_disPayYE">结算金额</string>
+
+    <!-- 预定台位 -->
+    <string name="yuding_table">预定台位</string>
+    <string name="yuding_phone">手机号码</string>
+    <string name="yuding_phone1">手机：</string>
+    <string name="yuding_number">等位编码</string>
+    <string name="yuding_tableNum">目标台位</string>
+    <string name="yuding_sqNum">等位序号：</string>
+    <string name="yuding_dis">预定菜品详情</string>
+    <string name="yuding_Order_off">转正式台</string>
+    <string name="yuding_cancel_table">取消等位</string>
+    <string name="vip_card_disButton">点菜</string>
+
+    <!-- 登陆界面 -->
+    <string name="one">1</string>
+    <string name="tow">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="zero">0</string>
+    <string name="delete">删除</string>
+    <string name="succeed">完成</string>
+    <string name="login">登录</string>
+    <string name="reset">重置</string>
+
+    <!-- 点菜页面 -->
+    <string name="tc_not_dismiss">套餐还未点完，请点完或取消该套餐，再进行操作</string>
+    <string name="tc_not_dismiss_other">套餐还未点完，请点完该套餐，再进行操作</string>
+    <string name="eatable_fujia">附加项</string>
+    <string name="eatable_yidiancai">已点菜</string>
+    <string name="eatable_tc_queren">确认</string>
+    <string name="eatable_tc_quxiao">取消</string>
+    <string name="eatable_tc_tcnofinish">套餐还未选择完毕！</string>
+    <string name="eatable_tc_servelnotxuan">你还没有选完套餐，有若干组还未选</string>
+    <string name="eatable_tc_detail_fengefu"> ----------- </string>
+    <string name="eatable_tc_detail_maohao"> : </string>
+    <string name="eatable_tc_detail_zero"> 0 </string>
+    <string name="eatable_tc_detail_line">—</string>
+
+    <!-- 已点菜页面 -->
+    <string name="save_success">保存成功</string>
+    <string name="save_fail">保存失败</string>
+    <string name="not_send_before_dian">你还没有点菜，不能发送!</string>
+
+    <!-- FTP设置对话框 -->
+    <string name="dia_ftpsetting_instruction">请输入数据库文件所在的文件夹的ftp地址及账号密码</string>
+    <string name="dia_ftpsetting_username">账号：</string>
+    <string name="dia_ftpsetting_username_please">请输入账号</string>
+    <string name="dia_ftpsetting_pwd">密码：</string>
+    <string name="dia_ftpsetting_pwd_please">请输入密码</string>
+    <string name="dia_ftpsetting_ip">IP：&#160;&#160; &#160;&#160;&#160;</string>
+    <string name="dia_ftpsetting_ip_please">请输入IP地址</string>
+
+    <!-- 设备编号 -->
+    <string name="dia_encodesetting">请输入Pad编号</string>
+    <string name="dia_encodesetting_bianhao">编号 :</string>
+    <string name="dia_encodesetting_bianhao_hint">请输入设备编号</string>
+    <string name="dia_certain">确认</string>
+    <string name="dia_cancel">取消</string>
+    <string name="dia_ipsetting_ipshow">当前地址：http://</string>
+    <string name="dia_ipsetting_ipaddress">IP地址：</string>
+    <string name="dia_ipsetting_ipaddress_hint">请输入IP地址</string>
+    <string name="dia_ipsetting_ipport">端口号：</string>
+    <string name="dia_ipsetting_ipport_hint">请输入端口号</string>
+
+    <!-- 赠送授权金额 -->
+    <string name="dia_authsetting_instruction">请输入最小赠菜授权金额</string>
+    <string name="dia_authsetting_jine">金额 ：</string>
+
+    <!-- 店铺编号 -->
+    <string name="dia_shopencode_instruction">请输入店铺编号</string>
+    <string name="dia_shopencode_bianhao">编号:</string>
+    <string name="dia_shopencode_title">设置店铺编号</string>
+
+    <!-- 全单页面 -->
+    <string name="yixuan_gongdiancaipin">共点菜品:</string>
+    <string name="yixuan_heji">合计:</string>
+    <string name="yixuan_fujiaxiang">附加项:</string>
+    <string name="yixuan_delall">全部删除</string>
+    <string name="yixuan_quanxuan">全选</string>
+    <string name="yixuan_pinming">品名</string>
+    <string name="yixuan_shuliang">数量</string>
+    <string name="yixuan_jiage">价格</string>
+    <string name="yixuan_danwei">单位</string>
+    <string name="yixuan_xiaoji">小计</string>
+    <string name="yixuan_taiwei">台位</string>
+    <string name="yixuan_cuicai">催菜</string>
+    <string name="yixuan_huacai">划菜</string>
+    <string name="yixuan_zhuandan">转单</string>
+    <string name="yixuan_jiacai">加菜</string>
+    <string name="yixuan_dayin">打印</string>
+    <string name="yixuan_yujiesuan">预结算</string>
+    <string name="yixuan_back">返回</string>
+    <string name="verify_queren">确认</string>
+    <string name="verify_quxiao">取消</string>
+
+    <!-- 已点菜品界面 -->
+    <string name="yidiancai_taiwei">台位</string>
+    <string name="yidiancai_beizhu">备注</string>
+    <string name="yidiancai_fasong">发送</string>
+    <string name="yidiancai_jiqifasong">即起发送</string>
+    <string name="yidiancai_jiaoqifasong">叫起发送</string>
+    <string name="yidiancai_waitOrPrompt">即起/叫起</string>
+    <string name="yidiancai_gongdiancaipin">共点菜品:</string>
+    <string name="yidiancai_heji">合计:</string>
+    <string name="yidiancai_fujiaxiang">附加项:</string>
+    <!-- 会员查询 -->
+    <string name="findVipPhone">手机号或卡号：</string>
+
+    <!-- 单品附加项对话框 -->
+    <string name="fujia_fujiaxiangshezhi">附加项设置</string>
+    <string name="fujia_zhengdanbeizhu">整单备注</string>
+    <string name="fujia_queding">确定</string>
+    <string name="fujia_quxiao">取消</string>
+    <!-- 2014年5月14日 -->
+    <string name="second_unit_weight">请输入第二单位重量</string>
+    <string name="data_error">获取数据失败</string>
+    <string name="input_not_null">输入框不能为空</string>
+    <string name="bill_Paid_not_cancle">账单已消费，请支付完成或取消支付</string>
+    <string name="please_input_money">请输入金额</string>
+    <string name="input_money">输入金额</string>
+    <string name="money_not_null">金额不能为空</string>
+    <string name="pay_money_not_privilege">使用银行卡或现金后将不能使用优惠，是否继续？</string>
+    <string name="pay_money_not_privilege1">使用现金后不可以使用优惠，请在使用现金之前使用优惠。</string>
+    <string name="success">操作成功</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="whether_to_vip">是否更改会员号？</string>
+    <string name="phone_num">手机号：</string>
+    <string name="vip_num">会员号：</string>
+    <string name="num_error">输入的号码错误</string>
+    <string name="reserve_table_and_order_dishes">是否预定台位并点菜</string>
+    <string name="query_vip_hint_one">请录入正确的手机号码或会员卡号后，点击确定按钮并等待通讯结束</string>
+    <string name="query_vip_hint_two">如当前手机卡号下有多张会员卡，请选择要使用的卡号，然后点击查询继续</string>
+    <string name="skip_error">界面跳转异常</string>
+    <string name="ftp_adds_not_null">FTP 地址为空</string>
+    <string name="ftp_adds_error">FTP 地址错误</string>
+    <string name="update_success">数据更新成功</string>
+    <string name="update_unsuccess">数据更新失败</string>
+    <string name="exit_app">再按一次退出程序</string>
+    <string name="update_data">数据更新中...</string>
+    <string name="if_update_data">数据版本已更新，是否FTP同步数据</string>
+    <string name="please_user_name">请输入用户名</string>
+    <string name="ip_not_null">IP地址为空，请设置IP后登陆！</string>
+    <string name="pwd_error">密码错误</string>
+    <string name="pwd_ver">密码验证</string>
+    <string name="store_num_setting_success">店铺编号设置成功</string>
+    <string name="current_num">当前编号：</string>
+    <string name="setting_give_money">设置赠送授权金额</string>
+    <string name="setting_give_money_success">赠送授权金额设置成功</string>
+    <string name="current_give_money">当前授权金额：</string>
+    <string name="encodesetting_success">设备编号设置成功</string>
+    <string name="current_encode">当前编号:</string>
+    <string name="encodesetting">设置Pad编号</string>
+    <string name="setting_success">设置成功</string>
+    <string name="ftp_example">IP地址错误,例：192.168.0.1:21</string>
+    <string name="please_setting_ftp_adds">请设置Ftp地址</string>
+    <string name="current_ftp_adds">当前地址:ftp://</string>
+    <string name="ip_error">ip格式错误</string>
+    <string name="port_error">端口格式错误</string>
+    <string name="port_not_null">端口不能为空</string>
+    <string name="ip_setting">设置IP地址</string>
+    <string name="settinggroup">选项分类</string>
+    <string name="area">区域</string>
+    <string name="state">状态</string>
+    <string name="lc">楼层</string>
+    <string name="app_setting">软件设置</string>
+    <string name="in_the_login">正登录中</string>
+    <string name="pay_money_error">储值消费+积分消费大于应收金额</string>
+    <string name="pay_money_error2">余额消费+积分消费大于应付金额</string>
+    <string name="pay_money_error3">余额消费不能大于应付与可用金额</string>
+    <string name="pay_money_error4">积分消费不能大于应付与可用金额</string>
+    <string name="error">错误</string>
+    <string name="pwd_input">密码输入</string>
+    <string name="please_wait">请稍后</string>
+    <string name="reserve_table_error">预定台位不支持此操作</string>
+    <string name="whether_cancel_the_gift">是否取消赠送</string>
+    <string name="meal_not_add_items">套餐不能添加附加项</string>
+    <string name="not_jurisdiction">没有权限</string>
+    <string name="give_food">赠菜</string>
+    <string name="input_count_error">输入的数量有误</string>
+    <string name="give_food_authorization">赠菜授权</string>
+    <string name="delete_yc">移除</string>
+    <string name="if_delete_food">是否确定要从列表中移除这个菜品？</string>
+    <string name="give">赠</string>
+    <string name="whether_save_food">是否保存已点的菜品</string>
+    <string name="only_save_error">预点餐不能即起，只能保存</string>
+    <string name="food_sending">正在发送菜品中，请稍后...</string>
+    <string name="authorization_ing">正在验证授权中，请稍后...</string>
+    <string name="part">份</string>
+    <string name="print_success">打印成功</string>
+    <string name="push_food_unsuccess">催菜失败</string>
+    <string name="please_checked_to_handle">请先选中复选框，再操作</string>
+    <string name="please_checked_one_handle">每次只能对一道菜品进行退菜操作</string>
+    <string name="fan_hua_cai">反划菜</string>
+    <string name="is_all_hua_cai">全单划菜/反划菜？</string>
+    <string name="hua_cai_success">划菜成功</string>
+    <string name="hua_cai_success_other">反划菜成功</string>
+    <string name="hua_cai_error">划菜失败</string>
+    <string name="course">道</string>
+    <string name="table_is_not_null">台位号不能为空</string>
+    <!-- 已下禁止出现“_” -->
+    <string name="sealed_table">已封台</string>
+    <string name="clean_table">清台</string>
+    <string name="state_all">全部</string>
+    <string name="state_leisure">空闲</string>
+    <string name="state_start">开台</string>
+    <string name="state_order">已点菜</string>
+    <string name="state_pay">结账</string>
+    <string name="state_served">菜齐</string>
+    <string name="state_number">台号：</string>
+    <!-- 已上禁止出现“_” -->
+    <string name="table_class_error">获取台位类别为空</string>
+    <string name="cancel_unsuccess">注销失败</string>
+    <string name="cancel_success">注销成功</string>
+    <string name="cancel_error">取消失败</string>
+    <string name="wait_ready_order">等位预点</string>
+    <string name="people_not_null">人数不能为空</string>
+    <string name="order_not_food">该账单没有预点菜品请选择操作</string>
+    <string name="cancel_reserve">取消预定</string>
+    <string name="reserve_to_table">等位预点单转台</string>
+    <string name="phone_error">手机号码错误</string>
+    <string name="phone_not_null">手机号码不能为空</string>
+    <string name="hao_number">号</string>
+    <string name="tagTai_not_null">目标台位号不能为空</string>
+    <string name="not_wait_msg">没有等位信息</string>
+    <string name="versions_newest">当前已是最新版本</string>
+    <string name="examine_versions">检查版本更新</string>
+    <string name="food_maximum">该份菜品最多可选择</string>
+    <string name="food_beyond_maximum">已超过该组数量的上限</string>
+    <string name="you_not_choice_food">你还没有选择菜品</string>
+    <string name="table_not_bill">该台位没有账单数据</string>
+    <string name="data_null">数据为空</string>
+    <string name="dao_zongji">道,总计</string>
+    <string name="money_unit">元</string>
+    <string name="please_input_table">请输入台位号</string>
+    <string name="query_table">台位查询</string>
+    <string name="huantai_error">换台出错</string>
+    <string name="bingtai_success">并台成功</string>
+    <string name="bingtai_unsuccess">并台出错</string>
+    <string name="is_area_not_table">该区域没有台位</string>
+    <string name="is_state_not_table">该状态没有台位</string>
+    <string name="is_lc_not_table">该楼层没有台位</string>
+    <string name="vip_cards">会员持卡</string>
+    <string name="dian_zi_you_hui">电子优惠</string>
+    <string name="xiao_fei_qing_kuang">消费情况</string>
+    <string name="pay_condition">交易情况</string>
+    <string name="ji">即</string>
+    <string name="jiao">叫</string>
+    <string name="yu">预</string>
+    <string name="cui">催</string>
+    <string name="ci">次</string>
+    <string name="vip_msg_error">获取会员信息错误</string>
+    <string name="zhang">(张)</string>
+    <string name="pay_success">支付成功</string>
+    <string name="input_value_error">传入的接口数据有误！</string>
+    <string name="pay_error">支付出错！</string>
+    <string name="result_anxml_error">解析接口返回数据出错！</string>
+
+
+    <string name="please_input_search_content">请输入要搜索内容</string>
+    <string name="pay_success_zhaoL">支付成功！找零</string>
+    <string name="whether_the_invoice">是否开发票</string>
+    <string name="invoice_success">开发票成功</string>
+    <string name="invoice">开发票</string>
+    <string name="data_down">数据下载</string>
+    <string name="update_handle_error">更新执行失败</string>
+    <string name="ftp_transfer_error">FTP数据传输错误</string>
+    <string name="ftp_suspend_error">FTP中止异常</string>
+    <string name="ftp_update_state_error">FTP更新状态错误</string>
+    <string name="ftp_mutual_error">FTP交互错误！请检查网络是否通畅或FTP地址是否正确</string>
+    <string name="ftp_msg_error">FTP 信息回复错误</string>
+    <string name="ftp_update_error">FTP更新错误</string>
+    <string name="off_the_stocks">已完成</string>
+    <string name="down_error">下载失败</string>
+    <string name="start_down">开始下载</string>
+    <string name="not_database">没有找到数据库</string>
+    <string name="youhui_shouquan">优惠授权</string>
+    <string name="shouquan_error">授权验证出错</string>
+    <string name="language_setting">多语言设置</string>
+    <!-- 2014年5月15日 17:22:33 -->
+    <string name="equipment_code">设备编号</string>
+    <string name="table_divide_mode">台位划分方式</string>
+    <string name="whether_men_and_women">是否区分男女</string>
+    <string name="membership_is_available">会员是否可用</string>
+    <string name="physical_number">物理编号</string>
+    <string name="in_the_background">登陆背景</string>
+    <string name="left_image">账单查询左侧图片</string>
+    <string name="equipment_registration">设备注册</string>
+    <string name="store_number">店铺编号</string>
+    <string name="BlueTooth">等位单蓝牙打印</string>
+    <string name="version_number">版本号：</string>
+    <string name="setting_ftp_adds">设置FTP地址</string>
+    <string name="update_information">更新资料</string>
+    <string name="server_config">服务器配置</string>
+    <string name="whether_local_library">是否使用本地库</string>
+    <string name="machine_set">本机设置</string>
+    <string name="query_bill">查询账单</string>
+    <string name="gu_qing_setting">估清设置</string>
+    <string name="food_solding">菜品已估清，或没有这么多菜品</string>
+    <string name="refresh">刷新</string>
+    <string name="logout">注销</string>
+    <string name="please_phone_num">请输入手机号码</string>
+    <string name="please_vip_num">请输入会员卡号</string>
+    <string name="vip_num_not_hao">会员卡号</string>
+    <string name="activation_time">激活时间</string>
+    <string name="expiry_date">有效期至</string>
+    <string name="stored_value_balance">储值余额</string>
+    <string name="jifen_yue">积分余额</string>
+    <string name="coupon_code">券编码</string>
+    <string name="coupon_money">券金额</string>
+    <string name="coupon_name">券名称</string>
+    <string name="coupon_shul">券数量</string>
+    <string name="machine_code">机器码</string>
+    <string name="same_operation">台位操作</string>
+    <string name="numerical_order">序号：</string>
+    <string name="table">台位：</string>
+    <string name="give_the_number">赠送数量:</string>
+    <string name="cancel_give">取消赠送:</string>
+    <string name="authorization_number">授权编号:</string>
+    <string name="authorization_pwd">授权密码:</string>
+    <string name="money_or_unit">元/份</string>
+    <string name="please_start_people">请输入开台人数</string>
+    <string name="start_people">开台人数</string>
+    <string name="table_query">查询台位</string>
+    <string name="equipotential_success">等位成功</string>
+    <string name="yu_dian_cai">是否进行预点菜？</string>
+    <string name="please_query_table_num">请输入查询的台位号:</string>
+    <string name="port">端    口:</string>
+    <string name="machine_config">本机配置</string>
+    <string name="table_num">桌号：</string>
+    <string name="repast_man">就餐先生人数</string>
+    <string name="repast_woman">就餐女士人数</string>
+    <string name="repast_people">就餐人数</string>
+    <string name="start_number">开台号数</string>
+    <string name="food_list">菜品详单：</string>
+    <string name="order_number">订单号：</string>
+    <string name="preprinted">预打印</string>
+    <string name="app_downing">软件下载中...</string>
+    <string name="update">更新</string>
+    <string name="app_update">软件版本更新</string>
+    <string name="later_update">以后再说</string>
+    <string name="update_Msg">有最新的软件包哦，亲快下载吧~</string>
+    <string name="chinese">简体中文</string>
+    <string name="chinese_tdl">繁體中文</string>
+    <string name="english">English</string>
+    <string name="chinese_snack">中快餐切换</string>
+    <string name="snack_model">快餐模式</string>
+    <string name="chinese_model">中餐模式</string>
+    <string name="login_error">获取登录信息失败！</string>
+    <string name="start_table_unsuccess">开台失败！</string>
+    <string name="set_meal">套餐</string>
+    <string name="food_data_error">整理菜品数据出错！</string>
+    <string name="please_input_table_abbr">请输入台位缩写</string>
+    <string name="send_unsuccess">发送失败</string>
+    <string name="input_money_less_yingF">输入金额少于应付金额</string>
+    <string name="chinese_yixuan_yujiesuan">结算</string>
+    <string name="foodback">退菜</string>
+    <string name="root_code">授权工号：</string>
+    <string name="root_pwd">授权密码：</string>
+    <string name="back_count">退菜数量：</string>
+    <string name="back_cause">退菜原因：</string>
+    <string name="food_name">菜品名称：</string>
+    <string name="food_back_count_error">退菜数量不能小于等于0！</string>
+    <string name="food_back_error">退菜错误！</string>
+    <string name="feng_tai">台位已封台，不可用！</string>
+    <string name="people_revamp">修改人数</string>
+    <string name="table_init">台位缩写：</string>
+    <string name="get_date_error">获取账单信息错误！</string>
+    <string name="update_people_error">修改人数错误！</string>
+    <string name="update_people_success">修改人数成功！</string>
+    <string name="update_people_unsuccess">修改人数失败！</string>
+    <string name="pay_zheK">折扣金额：</string>
+    <string name="pay_fuWu">服务费：</string>
+    <string name="pay_mianX">免项：</string>
+    <string name="pay_roomMoney">包间金额：</string>
+    <string name="cancelPayment_success">取消成功！</string>
+    <string name="lack_vip_app">缺少会员支付需要的APP，请联系辰森实施人员！</string>
+    <string name="only_back_button">只是个返回按钮而已</string>
+    <string name="qi">起</string>
+    <string name="gu_qing_food">沽清菜品</string>
+    <string name="revamp_counts">数量修改</string>
+    <string name="counts">数量：</string>
+
+    <string name="payment_error">获取结算方式数据失败！</string>
+    <string name="payment_null">结算方式数据为空！</string>
+    <string name="huaCai_not_cuiCai">已划菜品不能进行催菜！</string>
+    <string name="fujia_type_null">该类别下没有附加项！</string>
+    <string name="fujia_not_end">附加项还没有选择完毕！</string>
+    <string name="fujia_count_error">该附加项已选择完毕！</string>
+    <string name="fujia_typ_count_error">该组附加项已选择完毕！</string>
+    <string name="eatable_fujia_chanpin">附加产品</string>
+    <string name="fujia_null">没有附加数据！</string>
+    <string name="query_null">未查到数据！</string>
+    <string name="query_error">查询异常！</string>
+    <string name="table_occupy">该台位已被占用，不能操作</string>
+    <string name="start_seed_table">开子台</string>
+    <string name="fj_shibai">全单附加项发送失败！</string>
+    <string name="setting_logout_time">自动注销</string>
+    <string name="logout_time">自动注销</string>
+    <string name="close_app_time">自动退出</string>
+    <string name="minute">分钟</string>
+    <string name="logout_hint">注：自动注销（退出）设置，0表示不自动注销（退出）</string>
+    <string name="close_hint">由于长时间未操作，App将自动关闭！</string>
+    <string name="out_hint">由于长时间未操作，APP将自动注销！</string>
+    <string name="clean_table_hint">此台位状态为脏台，是否清台？</string>
+    <string name="class_error">菜品类别为空！请设置后重试！</string>
+    <string name="temp_food_set">临时菜</string>
+    <string name="food_price">菜品单价：</string>
+    <string name="name_null">菜品名称不能为空</string>
+    <string name="price_null">菜品金额不能为空</string>
+    <string name="second">秒</string>
+    <string name="fujia_money">附加项金额：</string>
+    <string name="wait_main_title">等位取号服务</string>
+    <string name="confirm_num">确认取号</string>
+    <string name="history">历史</string>
+    <string name="wait_url_null">总部等位地址没有设置，请设置后使用！</string>
+    <string name="wait_ip_setting">总部等位地址</string>
+    <string name="people">人</string>
+    <string name="before_many_people">前面还有%d人</string>
+    <string name="before_many_time">已等待%s分钟</string>
+    <string name="wait_begin_time">取号时间：%s</string>
+    <string name="wait_type_error">请选择上方有效的台位类别！</string>
+    <string name="store_error">分店编码错误</string>
+    <string name="people_error">人数参数必传不得小于0</string>
+    <string name="wait_type_error1">未设置等位类型</string>
+    <string name="wait_type_error2">未满足此人数的等位类型</string>
+    <string name="store_time_error">分店餐次时间未设置</string>
+    <string name="jiaohao_error">叫号出错！</string>
+    <string name="quxiao_error">过号失败！</string>
+    <string name="gain_wait_error">获取等位信息出错！</string>
+    <string name="self_search">自动检测</string>
+    <string name="search_error">IP检测失败！</string>
+    <string name="tvip_not_null">叫号TV IP为空，请点击右上角TV图标设置！</string>
+    <string name="food_back_success">退菜成功</string>
+    <string name="food_back_unsuccess">退菜失败</string>
+    <string name="food_back_count_error1">退菜数量不能为空</string>
+    <string name="store_null">门店编码没有设置，请设置后在试！</string>
+    <string name="wait_repetition">不能重复取号</string>
+    <string name="chexiao_error">撤销失败！</string>
+    <string name="call_error">叫号不成功！</string>
+    <string name="chinese_search_cancel">取消</string>
+    <string name="chinese_yixuan_ts_modify">您还有未修改数量的第二单位菜品,请您先修改数量，再执行结算</string>
+    <string name="chinese_yixuan_count">数量改为：</string>
+    <string name="chinese_yixuan_inputcode">请输入要修改的数量</string>
+    <string name="chinese_yixuan_choosed">请您先选中菜品</string>
+    <string name="chinese_yixuan_choosed_one">同一时刻，只能修改一道菜品的数量，请您重选</string>
+    <string name="chinese_xibei_notmodifycount">该菜品不属于第二单位菜品,不能修改数量</string>
+    <string name="chinese_yixuan_ts_present">该菜品属于第二单位菜品,请您先修改数量，再执行赠送</string>
+    <string name="chinese_yixuan_inputzscnt">请输入要赠送的数量</string>
+    <string name="chinese_yixuan_beyondzscnt">您所输入赠送的数量超出了原有菜品的数量</string>
+    <string name="chinese_yixuan_zs_null">赠送原因为空，赠送失败！</string>
+    <string name="chinese_xibei_presentcount">赠送数量：</string>
+    <string name="chinese_xibei_presentreason">赠送原因：</string>
+    <string name="chinese_yixuan_inputTable">请输入要转的台位简码</string>
+
+    <string name="vip_jurisdiction">会员价授权</string>
+    <string name="SA_cancel_huiYuanJia">取消会员价</string>
+    <string name="SA_execute_huiYuanJia">执行会员价</string>
+    <string name="execute_success">执行成功！</string>
+    <string name="SA_huiYuanJia">会员价</string>
+    <string name="SA_network">网络支付</string>
+    <string name="fukuan_je">付款金额：</string>
+    <string name="scan_text">对准二维码进行扫描</string>
+    <string name="pay_money_zero">错误，应付金额为0！</string>
+    <string name="scan_code_pay_error">扫描支付出错！</string>
+    <string name="scan_code_pay_success">扫描支付成功！</string>
+    <string name="pay_weixin_up">微信上传</string>
+    <string name="up_error">上传失败！</string>
+    <string name="up_success">上传成功！</string>
+    <string name="scan_error">没有扫描出数据！</string>
+    <string name="order_num">账单号</string>
+    <string name="print_wait_failure">打印等位号码失败！</string>
+    <string name="take_success">取号成功！</string>
+    <string name="take_failure">取号失败！</string>
+    <string name="example_hd">例如：192.168.1.100:8080/Choice</string>
+    <string name="dia_ipsetting_hd_address_hint">请输入总部地址</string>
+    <string name="discount_money">请输入优免金额</string>
+    <string name="discount_cause">请输入优免原因</string>
+    <string name="phone_number">手机号</string>
+    <string name="vip_num_not_null">会员号不能为空</string>
+    <string name="vip_pwd">会员密码：</string>
+    <string name="query_actm_error">获取优惠信息出错！</string>
+    <string name="query_actm_null">获取优惠信息为空！</string>
+    <string name="actm_error">当前会员没有该券</string>
+    <string name="not_permission">没有权限执行此操作！</string>
+    <!-- <string name="gu_qing_setting">估清设置</string> -->
+    <string name="cancel_guqing">取消估清</string>
+    <string name="gu_qing_cnt">估清数量：</string>
+    <string name="gu_qing_count">估清数量</string>
+    <string name="gu_qing_sold">估清提醒数量 默认:0</string>
+    <string name="gu_qing_success">设置估清成功！</string>
+    <string name="gu_qing_error">设置估清失败！</string>
+    <string name="gu_qing_typ">估清菜品</string>
+    <string name="title_activity_start_tai">StartTaiActivity</string>
+
+    <!-- 台位界面 -->
+    <string name="mainactivity_normalcreatetable">正常开台</string>
+    <string name="mainactivity_preordercreatetable">预订单开台</string>
+    <string name="mainactivity_pleaseinputpeoplecount">请输入开台人数:</string>
+    <string name="mainactivity_pleaseinputpreorderid">请输入预订单号:</string>
+    <string name="mainactivity_createtable">开台</string>
+    <string name="orderid_not_null">订单号不能为空</string>
+    <!-- 对接美味不用等 -->
+    <string name="dia_jnow_authuser">账号:</string>
+    <string name="dia_jnow_authpwd">密码:</string>
+    <string name="dia_jnow_inputauthuser">请输入账号</string>
+    <string name="dia_jnow_inputauthpwd">请输入密码</string>
+    <string name="dia_jnow_upload_title">上传菜品</string>
+    <string name="dia_jnow_upload_message">是否马上同步本地菜品到美味不用等的服务器?</string>
+    <string name="jnow_input_authuserandpwd">请先填写美味不用等的授权账号和密码</string>
+    <string name="jnow_params_error">参数错误，请稍后再试</string>
+    <string name="jnow_set_authuserandpwd">请您先设置美味不用等的授权账号与密码</string>
+    <string name="jnow_instruct_updatesqlitefirst">请您先更新数据库</string>
+    <string name="jnow_auth">美味不用等的授权</string>
+    <string name="jnow_uploaddata">同步本地数据到美味不用等</string>
+    <string name="button_scan">扫描蓝牙设备</string>
+    <string name="select_device">选择蓝牙设备</string>
+    <string name="none_paired">没有找到蓝牙设备</string>
+    <string name="scanning">扫描</string>
+    <string name="none_found">没有找到</string>
+
+
+</resources>

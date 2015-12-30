@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dia_createtable_chooseways_bg_listitem_selector"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="3.0dip"
+    android:paddingRight="3.0dip"
+    android:paddingTop="15dp" >
+
+    <RadioGroup
+        android:id="@+id/dia_createtable_chooseways_rdGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/dia_createtable_chooseways_rb_normal"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:gravity="center_horizontal"
+            android:text="@string/mainactivity_normalcreatetable"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/dia_createtable_chooseways_rb_preorder"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="@string/mainactivity_preordercreatetable"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/dia_createtable_chooseways_ln_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/mainactivity_pleaseinputpeoplecount"
+            android:textSize="18sp" />
+
+        <cn.com.choicesoft.view.ClearEditText
+            android:id="@+id/dia_createtable_chooseways_clet_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/dia_editor_n"
+            android:digits="0123456789"
+            android:drawableRight="@drawable/delete_selector"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="8dp"
+            android:textSize="20sp" >
+        </cn.com.choicesoft.view.ClearEditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dia_createtable_chooseways_ln_preorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/mainactivity_pleaseinputpeoplecount"
+                android:textSize="18sp" />
+
+            <cn.com.choicesoft.view.ClearEditText
+                android:id="@+id/dia_createtable_chooseways_clet_pax_preorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/dia_editor_n"
+                android:digits="0123456789"
+                android:drawableRight="@drawable/delete_selector"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3"
+                android:padding="8dp"
+                android:textSize="20sp" >
+            </cn.com.choicesoft.view.ClearEditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mainactivity_pleaseinputpreorderid"
+                android:textSize="18sp" />
+
+            <cn.com.choicesoft.view.ClearEditText
+                android:id="@+id/dia_createtable_chooseways_clet_orderid_preorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10.0dip"
+                android:background="@drawable/dia_editor_n"
+                android:digits="0123456789"
+                android:drawableRight="@drawable/delete_selector"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textSize="20sp" >
+            </cn.com.choicesoft.view.ClearEditText>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#aaa" >
+
+        <Button
+            android:id="@+id/dia_createtable_chooseways_btn_confirm"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="1px"
+            android:layout_marginTop="1px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_background"
+            android:text="@string/confirm" />
+
+        <Button
+            android:id="@+id/dia_createtable_chooseways_btn_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1px"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button_background"
+            android:text="@string/cancle" />
+    </LinearLayout>
+
+</LinearLayout>

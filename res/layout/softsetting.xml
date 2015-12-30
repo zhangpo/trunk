@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scrollbars="none"
+            android:background="#DCDCDC">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/title"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/dia_softsetting_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/setting_button_background"
+                    android:gravity="center"
+                    android:text="@string/succeed"
+                    android:textColor="#fff"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:id="@+id/dia_starttable_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+        </FrameLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dip"
+                    android:text="@string/machine_set"
+                    android:textColor="#444444"/>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_classify"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/soft_setting_first_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/taiweihuafenfanghsi_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/table_divide_mode"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <TextView
+                        android:id="@+id/taiweihuafenfanghsi_classifyText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/taiweihuafenfanghsi_textview"
+                        android:gravity="right"
+                        android:paddingRight="10dp"
+                        android:scaleType="matrix"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_ifdisguishSex"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_softsetting_isDisguishTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/whether_men_and_women"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ToggleButton
+                        android:id="@+id/dia_softsetting_isDisguishToggleButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/dia_softsetting_isDisguishTextView"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/toggle_bg"
+                        android:textOff=""
+                        android:textOn=""/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_ifNetRelativeLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_softsetting_isShowVipView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/membership_is_available"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ToggleButton
+                        android:id="@+id/dia_softsetting_isShowVipToggleButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/dia_softsetting_isShowVipView"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/toggle_bg"
+                        android:textOff=""
+                        android:textOn=""/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_deviceencode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/equipment_code"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_tv_physicallogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/physical_number"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <TextView
+                        android:id="@+id/dia_tv_physicalvalue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dip"
+                        android:layout_toRightOf="@id/dia_tv_physicallogo"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="right"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:paddingRight="10dp"
+                        android:scaleType="matrix"
+                        android:singleLine="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_setbackground"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_tv_setbackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_centerVertical="true"
+                        android:text="@string/in_the_background"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <Button
+                        android:id="@+id/dialog_chongzhibackground_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/chongzhi_button_bg"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignBottom="@+id/dia_tv_setbackground"
+                        android:layout_alignTop="@+id/dia_tv_setbackground"
+                        android:paddingRight="10dp"
+                        />
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_setleftbg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_tv_setleftbg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_centerVertical="true"
+                        android:text="@string/left_image"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <Button
+                        android:id="@+id/dialog_chongzhileftbg_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/chongzhi_button_bg"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignBottom="@+id/dia_tv_setleftbg"
+                        android:layout_alignTop="@+id/dia_tv_setleftbg"
+                        android:paddingRight="10dp"
+                        />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_deviceRegister"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/equipment_registration"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_shopencode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/store_number"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/dia_softsetting_BlueTooth"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="@string/BlueTooth"
+                            android:textColor="#000"
+                            android:textSize="17sp"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="matrix"
+                            android:src="@drawable/softsetting_submenu"/>
+                </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_ifDateBaseLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/dia_softsetting_isNetTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/whether_local_library"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ToggleButton
+                        android:id="@+id/dia_softsetting_isNetToggleButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/dia_softsetting_isNetTextView"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/toggle_bg"
+                        android:textOff=""
+                        android:textOn=""/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_presentAuth"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/setting_give_money"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_language"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/setting_language_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/language_setting"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <TextView
+                        android:id="@+id/setting_language_showTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/setting_language_textView"
+                        android:gravity="right"
+                        android:paddingRight="10dp"
+                        android:scaleType="matrix"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_chinese_snack"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/setting_chinese_snack_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/chinese_snack"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <TextView
+                        android:id="@+id/setting_chinese_snack_showTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/setting_chinese_snack_title"
+                        android:gravity="right"
+                        android:paddingRight="10dp"
+                        android:scaleType="matrix"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_logout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/setting_logout_time"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_checkappversion"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_last_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/banbenhao_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/version_number"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <TextView
+                        android:id="@+id/dialog_textview_appversion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/banbenhao_textview"
+                        android:gravity="right"
+                        android:paddingRight="10dp"
+                        android:scaleType="matrix"
+                        android:singleLine="true"
+                        android:text="1.1.9"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dip"
+                    android:text="@string/server_config"
+                    android:textColor="#444444"/>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_ftpset"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/soft_setting_first_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/setting_ftp_adds"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_ipset"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/ip_setting"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_wait_ipset"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_middle_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/wait_ip_setting"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/dia_softsetting_updatedata"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/soft_setting_last_selector"
+                    android:clickable="true"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/update_information"
+                        android:textColor="#000"
+                        android:textSize="17sp"/>
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="matrix"
+                        android:src="@drawable/softsetting_submenu"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="wrap_content"
+                android:layout_height="30dip"
+                android:visibility="invisible"/>
+    </LinearLayout>
+
+</ScrollView>

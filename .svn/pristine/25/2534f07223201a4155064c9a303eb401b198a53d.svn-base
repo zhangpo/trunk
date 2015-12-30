@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- 当单选框可用，且获得焦点还没有按下显示的背景 -->
+  <item android:state_enabled="true" android:state_pressed="false"
+        android:drawable="@drawable/wait_x_up">
+  </item>
+  <!-- 当单选框可用，且被按下时显示的背景 -->
+  <item android:state_enabled="true" android:state_pressed="true"
+        android:drawable="@drawable/wait_x_d">
+  </item>
+  <!-- 当单选框可用，且被选中了时的背景 -->
+  <item android:state_enabled="true" android:state_checked="true"
+        android:drawable="@drawable/wait_x_d">
+  </item>
+</selector>

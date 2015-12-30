@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/table_Radio"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="40dp" >
+
+        <RadioButton
+            android:id="@+id/table_classify_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/area"
+            android:textColor="@color/lightgrey" />
+
+        <RadioButton
+            android:id="@+id/table_classify_lc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lc"
+            android:textColor="@color/lightgrey" />
+
+        <RadioButton
+            android:id="@+id/table_classify_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/state"
+            android:textColor="@color/lightgrey" />
+    </RadioGroup>
+
+</LinearLayout>

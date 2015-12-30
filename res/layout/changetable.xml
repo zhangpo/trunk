@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/dia_changetable_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:background="@drawable/dialog_title"
+            android:gravity="center"
+            android:text="@string/same_operation"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/dia_changetable_title"
+            android:background="@drawable/dialog_main"
+            android:paddingTop="40dip">
+
+        <LinearLayout
+                android:id="@+id/dia_linear_orginaltable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dip"
+                android:layout_marginRight="20dip"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/thisTai"/>
+
+            <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/dia_editor_n"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/dia_linear_newtable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dia_linear_orginaltable"
+                android:layout_marginLeft="12dip"
+                android:layout_marginRight="20dip"
+                android:orientation="horizontal"
+                android:paddingTop="10dip">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/tagTai"/>
+
+            <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/dia_editor_n"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dia_linear_newtable"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:paddingTop="20dip">
+
+            <Button
+                    android:layout_width="100dp"
+                    android:padding="4dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dia_btn_selector"
+                    android:text="@string/cancle"/>
+
+            <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:padding="4dp"
+                    android:background="@drawable/dia_btn_selector"
+                    android:text="@string/confirm"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="#cccccc"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/dia_tv_ipsettitle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="20dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textSize="22sp"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:text="@string/dia_ipsetting_ipshow"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#333"/>
+
+        <TextView
+                android:id="@+id/dia_ipsetting_ipshow"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#333"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dia_ipsetting_ipaddress"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:textColor="#333"/>
+
+        <EditText
+                android:id="@+id/dia_et_ipsetip"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="@string/dia_ipsetting_ipaddress_hint"
+                android:singleLine="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dia_ipsetting_ipport"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:textColor="#333"/>
+
+        <EditText
+                android:id="@+id/dia_et_ipsetport"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:layout_gravity="center_vertical"
+                android:hint="@string/dia_ipsetting_ipport_hint"
+                android:singleLine="true">
+        </EditText>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#cccccc">
+
+        <Button
+                android:id="@+id/dia_btn_ipsetcertainbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/dia_certain"/>
+
+        <Button
+                android:id="@+id/dia_btn_ipsetcancelbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/dia_cancel"/>
+    </LinearLayout>
+
+</LinearLayout>

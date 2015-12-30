@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFFFFF"
+              android:orientation="vertical" >
+    <include layout="@layout/chinese_vip_activity_order_top"
+             android:clickable="false"/>
+
+    <LinearLayout
+            android:id="@+id/vip_payMent_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="left|center"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                android:text="@string/vip_yingFText" />
+
+        <TextView
+                android:id="@+id/chinese_vip_pay_yingFText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="" />
+
+    </LinearLayout>
+    <!-- Three start -->
+
+    <LinearLayout
+            android:id="@+id/vip_payMent_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true"
+            android:orientation="vertical" >
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="#000000"
+                    android:text="@string/vip_payment_chuZhiKYYEText"/>
+            <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:enabled="false"
+                    android:text="0.0"
+                    android:id="@+id/chinese_vip_pay_chuzhikeyong"/>
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/vip_payment_yeEXFText"
+                    android:textColor="#000000"
+                    android:gravity="right"/>
+            <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="0.0"
+                    android:id="@+id/chinese_vip_pay_chuzhixiaofei"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="#000000"
+                    android:text="@string/vip_payment_jiFenKYYEText"/>
+            <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:enabled="false"
+                    android:text="0.0"
+                    android:id="@+id/chinese_vip_pay_jifenkeyong"/>
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:textColor="#000000"
+                    android:text="@string/vip_payment_jiFenXFText"/>
+            <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="0.0"
+                    android:id="@+id/chinese_vip_pay_jifenxiaofei"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:weightSum="6">
+            <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/vip_payment_xianJinXFText"
+                    android:textColor="#000000"
+                    android:gravity="right"/>
+            <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="0.0"
+                    android:id="@+id/chinese_vip_pay_xianjinxiaofei"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/vip_payMent_layout6"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="@string/vip_quanXinXText" />
+
+    </LinearLayout>
+    <ScrollView
+            android:id="@+id/chinese_vip_pay_scrollView"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+        <LinearLayout
+                android:id="@+id/chinese_vip_pay_couponButtonLy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp">
+        <Button
+                android:padding="10dp"
+                android:layout_width="100dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@drawable/but_alone_bg"
+                android:text="@string/vip_jiSuanYE"
+                android:id="@+id/chinese_vip_pay_jisuanyue"/>
+        <Button
+                android:padding="10dp"
+                android:layout_width="100dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@drawable/but_alone_bg"
+                android:text="@string/vip_jiSuanJF"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:id="@+id/chinese_vip_pay_jisuanjifen"/>
+        <Button
+                android:padding="10dp"
+                android:layout_width="100dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@drawable/but_alone_bg"
+                android:text="@string/vip_jiSuanXJ"
+                android:id="@+id/chinese_vip_pay_jisuanxianjin"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginLeft="10dp">
+        <Button
+                android:padding="10dp"
+                android:layout_width="100dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@drawable/but_alone_bg"
+                android:text="@string/back"
+                android:layout_marginRight="5dp"
+                android:id="@+id/chinese_vip_pay_back"/>
+        <Button
+                android:padding="10dp"
+                android:layout_width="100dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:background="@drawable/but_alone_bg"
+                android:text="@string/vip_ConfirmPayment"
+                android:id="@+id/chinese_vip_pay_confirm"/>
+    </LinearLayout>
+
+</LinearLayout>

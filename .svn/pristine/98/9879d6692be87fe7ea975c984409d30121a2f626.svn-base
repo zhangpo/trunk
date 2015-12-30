@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#C1C1C1"
+    android:orientation="vertical" >
+    <!-- Three start -->
+
+    <LinearLayout
+        android:id="@+id/start_vip_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:baselineAligned="true"
+        android:background="#C1C1C1"
+        android:orientation="vertical" >
+	
+	    <LinearLayout
+	        android:id="@+id/start_vip_layout3_1"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="1dip"
+	        android:layout_marginLeft="5dip"
+	        android:layout_marginRight="5dip"
+	        android:gravity="right|center_horizontal"
+	        android:orientation="horizontal" >
+
+	        <TextView
+	            android:id="@+id/start_vip_phoneNum"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#000000"
+	            android:text="@string/PopWin_phoneNumText" />
+
+	        <EditText
+	            android:id="@+id/start_vip_PhoneNumEdit"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:background="@color/white"
+	            android:enabled="false"
+	            android:inputType="phone"
+	            android:textColor="#000000" />
+
+	        <TextView
+	            android:id="@+id/start_vip_VIPNumText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#000000"
+	            android:text="@string/vip_VIPNumText" />
+
+	        <EditText
+	            android:id="@+id/start_vip_VIPNumEdut"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:background="@color/white"
+	            android:enabled="false"
+	            android:inputType="text"
+	            android:textColor="#000000" />
+	       
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:id="@+id/start_vip_layout3_3"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="1dip"
+	        android:layout_marginLeft="5dip"
+	        android:layout_marginRight="5dip"
+	        android:gravity="right"
+	        android:orientation="horizontal" >
+
+	        <TextView
+	            android:id="@+id/textView3"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#000000"
+	            android:text="@string/vip_chuXuKText" />
+
+	        <EditText
+	            android:id="@+id/start_vip_chuXuKEdit"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:background="@color/white"
+	            android:enabled="false"
+	            android:inputType="text"
+	            android:textColor="#000000" />
+
+	        <TextView
+	            android:id="@+id/start_vip_jiFenYEText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#000000"
+	            android:text="@string/vip_jiFenYEText" />
+
+	        <EditText
+	            android:id="@+id/start_vip_jiFenYEEdit"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="wrap_content"
+	            android:background="@color/white"
+	            android:enabled="false"
+	            android:inputType="text"
+	            android:textColor="#000000" >
+	        </EditText>
+
+	    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/start_vip_layout6"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="#C1C1C1"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/start_vip_quanXinXText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+	        android:textColor="#000000"
+            android:text="@string/vip_quanXinXText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/start_vip_layout7"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:orientation="vertical" >
+        <LinearLayout 
+            android:id="@+id/start_Vip_couponListViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/start_vip_ticketIdTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="@string/vip_ticketId" />
+
+            <TextView
+                android:id="@+id/start_vip_ticketMoneyTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:text="@string/vip_ticketMoney"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/start_vip_ticketNameTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="@string/vip_ticketName" />
+
+            <TextView
+                android:id="@+id/start_vip_ticketAmountTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="@string/vip_ticketAmount" />
+            
+        </LinearLayout>
+        <ListView
+            android:id="@+id/start_Vip_couponListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dip" 
+            android:layout_weight="6"
+            android:cacheColorHint="#00000000"
+            >
+        </ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

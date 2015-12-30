@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/vip_payMent_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/vip_payMent_yingFText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/vip_yingFText" />
+
+        <TextView
+            android:id="@+id/vip_payMent_yingFText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+    </LinearLayout>
+    <!-- Three start -->
+
+    <LinearLayout
+        android:id="@+id/vip_payMent_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+	
+	    <LinearLayout
+	        android:id="@+id/vip_payMent_layout3_1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="right"
+	        android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/vip_payment_chuZhiKYYEText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="20dp"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginBottom="10dp"
+	            android:text="@string/vip_payment_chuZhiKYYEText" />
+	         <TextView
+	            android:id="@+id/vip_payment_jiFenKYYEText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="10dp"
+	            android:text="@string/vip_payment_jiFenKYYEText" />
+	         <TextView
+	            android:id="@+id/vip_payment_xianJinXFText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="10dp"
+	            android:text="@string/vip_payment_xianJinXFText" />
+	       
+	    </LinearLayout>
+	
+	    <LinearLayout
+	        android:id="@+id/vip_payMent_layout3_2"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:gravity="left"
+	        android:orientation="vertical" >
+	
+	       <EditText
+	           android:id="@+id/vip_payMent_chuZhiKYYEEdit"
+	           android:layout_width="match_parent"
+	           android:layout_height="wrap_content"
+	           android:enabled="false"
+	           android:ems="10"
+	           android:inputType="number" >
+
+	            <requestFocus />
+	        </EditText>
+	        
+	       <EditText
+	            android:id="@+id/vip_payment_jiFenKYYEEdit"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:enabled="false"
+	            android:ems="10"
+	            android:inputType="number" >
+	
+	            <requestFocus />
+		   </EditText>
+		   <EditText
+	            android:id="@+id/vip_payment_xianJinXFEdit"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="numberDecimal" 
+	            android:text="0.0"
+	            android:ems="10">
+	            <requestFocus />
+	        </EditText>
+	    </LinearLayout>
+	
+	     <LinearLayout
+	         android:id="@+id/vip_payMent_layout3_3"
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+			 android:gravity="right"
+	         android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/vip_payment_yeEXFText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="20dp"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginBottom="10dp"
+	            android:text="@string/vip_payment_yeEXFText" />
+			<TextView
+	            android:id="@+id/vip_payment_jiFenXFText"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_margin="10dp"
+	            android:text="@string/vip_payment_jiFenXFText" />
+	     </LinearLayout>
+	     <LinearLayout
+	        android:id="@+id/vip_payMent_layout3_4"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+			android:gravity="left"
+	        android:orientation="vertical" >
+			<EditText
+	            android:id="@+id/vip_payment_yeEXFEdit"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="numberDecimal"
+	            android:text="0.0"
+	            android:ems="10" >
+	            <requestFocus />
+	        </EditText>
+	
+	        <EditText
+	            android:id="@+id/vip_payment_jiFenXFEdit"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="numberDecimal" 
+	            android:text="0.0"
+	            android:ems="10">
+	            <requestFocus />
+	        </EditText>
+		</LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vip_payMent_layout6"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/vip_payMent_quanXinXText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vip_quanXinXText" />
+
+    </LinearLayout>
+    <ScrollView
+        android:id="@+id/vip_payMent_scrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" 
+        android:layout_gravity="center">
+        <LinearLayout
+            android:id="@+id/vip_payMent_couponButtonLy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

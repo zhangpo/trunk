@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="300dip"
+              android:layout_height="250dp"
+              android:layout_gravity="center"
+              android:background="#eee"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/dia_tv_fujiatitle"
+            android:layout_width="match_parent"
+            android:layout_height="30dip"
+            android:background="@drawable/dialog_title"
+            android:gravity="center"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ListView
+                android:id="@+id/dia_fujia_listview"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingRight="10dip"
+                android:paddingTop="30dip">
+
+            <Button
+                    android:id="@+id/dia_fujia_certain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/confirm"/>
+
+            <Button
+                    android:id="@+id/dia_fujia_cancel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="30dip"
+                    android:text="@string/cancle"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

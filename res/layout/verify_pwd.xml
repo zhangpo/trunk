@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/verify_pwd_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/dia_ftpsetting_pwd"
+            android:textSize="19sp"/>
+
+    <cn.com.choicesoft.view.ClearEditText
+            android:id="@+id/verify_pwd_Edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:background="@drawable/edittext_bg"
+            android:drawableRight="@drawable/delete_selector"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:padding="10dp">
+
+        <requestFocus/>
+    </cn.com.choicesoft.view.ClearEditText>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#cccccc">
+
+        <Button
+                android:id="@+id/verify_pwd_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/verify_queren"/>
+
+        <Button
+                android:id="@+id/verify_pwd_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="1px"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_button_background"
+                android:text="@string/verify_quxiao"/>
+    </LinearLayout>
+
+</LinearLayout>

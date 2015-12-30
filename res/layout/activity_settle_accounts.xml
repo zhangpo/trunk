@@ -1,0 +1,187 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/allLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    tools:context=".SettleAccountsActivity" >
+    <include
+        android:id="@+id/vip_top"
+        layout="@layout/vip_activity_order_top" />
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/botLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/vip_top"
+        android:layout_marginTop="18dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/setAccLeftLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/setARightLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/setAccRightLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|right" >
+
+                <TextView
+                    android:id="@+id/vipANumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vip_VIPNumText"
+                    android:textColor="#000000"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/vipANumText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/botLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:minHeight="45dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/SA_quXiaoPay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_quxiaozhifu"
+            android:text="@string/SA_quXiaoPay"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_quXiaoPrivilege"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_quxiaoyouhui"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/SA_quXiaoPrivilege"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_xianjin"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/vip_payBut"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+        <Button
+                android:id="@+id/SA_winxin_up"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_jiqi"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/pay_weixin_up"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_yinHangKa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_kaxiaofei"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/SA_yinHangKa"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_huiYuanKa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_huiyuanka"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/SA_huiYuanKa"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_yuDaYin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:drawableTop="@drawable/button_icon_yudayin"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/SA_yuDaYin"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/SA_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/mainactivity_button_bg"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/SA_back"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</RelativeLayout>

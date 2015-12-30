@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp" 
+    android:orientation="horizontal"
+    android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/vip_ticketId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:textColor="#000000"
+            android:gravity="center"/>
+        <View android:layout_width="1px"  
+            android:layout_height="fill_parent" 
+            android:layout_marginTop="2dip"
+            android:layout_marginBottom="2dip"
+            android:background="#003333" />
+
+        <TextView
+            android:id="@+id/vip_ticketName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:textColor="#000000" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="2dip"
+            android:layout_marginTop="2dip"
+            android:background="#003333" />
+
+        <TextView
+            android:id="@+id/vip_ticketMoney"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textColor="#000000"
+            android:gravity="center"/>
+</LinearLayout>

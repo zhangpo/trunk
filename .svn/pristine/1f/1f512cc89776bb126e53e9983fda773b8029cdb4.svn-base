@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFFFFF"
+              android:orientation="vertical" >
+
+    <include
+            layout="@layout/top_title"
+            android:clickable="false" />
+
+    <include layout="@layout/search_top_layout" />
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp" >
+
+        <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_weight="3"
+                android:orientation="horizontal" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yidiancai_gongdiancaipin"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+            <TextView
+                    android:id="@+id/yidian_tv_dishcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:orientation="horizontal" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yidiancai_heji"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+            <TextView
+                    android:id="@+id/yidian_tv_totalSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:orientation="horizontal" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yidiancai_fujiaxiang"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+
+            <TextView
+                    android:id="@+id/yidian_tv_fujiaMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:orientation="horizontal" >
+
+            <Button
+                    android:id="@+id/yidian_btn_deleteall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/btn_yidian_deleteall"
+                    android:text="@string/yixuan_delall"
+                    android:textColor="@color/greenblue" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF0000"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:visibility="gone" >
+
+            <TextView
+                    android:id="@+id/yidian_tv_pinming"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/pinming"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="@string/number"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/price"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/unit"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/subtotal"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/handle"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+        </LinearLayout>
+
+        <ExpandableListView
+                android:id="@+id/yidiandish_expandlist_menu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+        <ListView
+                android:id="@+id/yidiandish_list_menu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="horizontal"
+            android:padding="4dp" >
+
+        <TextView
+                android:id="@+id/yidian_tv_specialremark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yidian_sumtextview_bg"
+                android:hint="@string/all_addtions"
+                android:lines="2"
+                android:padding="6dp"
+                android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_horizontal"
+            android:minHeight="40dp" >
+
+        <Button
+                android:id="@+id/yidian_btn_tbl"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_taiwei"
+                android:singleLine="true"
+                android:text="@string/yidiancai_taiwei"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/yidian_btn_tempsave"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_baocun"
+                android:singleLine="true"
+                android:text="@string/temporary_save"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/yidian_btn_allbilladditions"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_beizhu"
+                android:singleLine="true"
+                android:text="@string/yidiancai_beizhu"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/yidian_btn_allbills"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_quandan"
+                android:singleLine="true"
+                android:text="@string/all_billes"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/yidian_btn_sendwait"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_jiaoqi"
+                android:singleLine="true"
+                android:text="@string/yidiancai_jiaoqifasong"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/yidian_btn_sendprompt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:drawableTop="@drawable/button_icon_jiqi"
+                android:singleLine="true"
+                android:text="@string/yidiancai_jiqifasong"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+
+        <Button
+                android:id="@+id/eatable_btn_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mainactivity_button_bg"
+                android:singleLine="true"
+                android:text="@string/back"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,177 @@
+package cn.com.choicesoft.util;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+import cn.com.choicesoft.R;
+import cn.com.choicesoft.activity.MainActivity;
+import cn.com.choicesoft.bean.MoneyPay;
+import cn.com.choicesoft.bean.VipRecord;
+import cn.com.choicesoft.constants.TsData;
+import cn.com.choicesoft.view.LoadingDialog;
+import cn.com.choicesoft.view.LoadingDialogStyle;
+
+/**
+ * 最终提交类
+ * @Author:M.c
+ * @CreateDate:2014-1-21
+ * @Email:JNWSCZH@163.COM
+ */
+public class FinalPay {
+	private LoadingDialog dialog = null;
+	public LoadingDialog getDialog(Activity activity) {
+		if(dialog==null){
+			dialog = new LoadingDialogStyle(activity, activity.getString(R.string.please_wait));
+			dialog.setCancelable(true);
+		}
+		return dialog;
+	}
+	/**
+	 * 最终支付
+	 * @param ble 台位、订单等参数Bundle
+	 * @param activity 
+	 * @param zhaoL 找零金额
+	 */
+	public void fPay(final Bundle ble,final Activity activity,final Double zhaoL){
+		//TODO 通过数据库获取 vip 信息
+		List<VipRecord> vipList=new VipRecordUtil().queryHandle(activity, ble.getString("tableNum"));
+		VipRecord vip=ValueUtil.isNotEmpty(vipList)?vipList.get(0):null;
+		CList<Map<String,String>> clist=new CList<Map<String,String>>();
+		clist.add("deviceId", SharedPreferencesUtils.getDeviceId(activity));
+		clist.add("userCode", SharedPreferencesUtils.getUserCode(activity));
+		clist.add("tableNum", ble.getString("tableNum"));
+		clist.add("orderId", ble.getString("orderId"));
+		StringBuffer payMentId=new StringBuffer(), payMentCnt=new StringBuffer(),PayMentMoney=new StringBuffer(),payFinish=new StringBuffer();
+		if(ValueUtil.isNotEmpty(TsData.moneyPay)){
+			for (Map.Entry<String, MoneyPay> map : TsData.moneyPay.entrySet()) {
+				MoneyPay money=map.getValue();
+				if(ValueUtil.isEmpty(money.getPayId())){//判断现金是否为空
+					break;
+				}
+				payMentId.append(money.getPayId()+"!");
+				payMentCnt.append(money.getPayNum()+"!");
+				PayMentMoney.append(money.getPayMoney()+"!");
+				payFinish.append("0!");
+			}
+		}
+		Integer index=null;//判断是否使用会员支付
+		if(ValueUtil.isNotEmpty(TsData.member)){
+			index=TsData.member.size()-1;
+		}
+//		clist.add("paymentId", payMentId.length()>0?payMentId.delete(payMentId.length()-1, payMentId.length()).toString():"0");
+//		clist.add("paymentCnt", payMentCnt.length()>0?payMentCnt.delete(payMentCnt.length()-1, payMentCnt.length()).toString():"0");
+//		clist.add("mpaymentMoney", PayMentMoney.length()>0?PayMentMoney.delete(PayMentMoney.length()-1, PayMentMoney.length()).toString():"0");
+//		clist.add("payFinish", payFinish.length()>=2?payFinish.replace(payFinish.length()-2, payFinish.length(), "!1").toString():"!1");
+//		clist.add("integralOverall", index==null?"":TsData.member.get(index).getPayIntegral());
+//		clist.add("cardNumber",ValueUtil.isNotEmpty(vip)?vip.getCardNumber():"");
+		clist.add("paymentId", payMentId.length()>0?payMentId.toString():"0");
+		clist.add("paymentCnt", payMentCnt.length()>0?payMentCnt.toString():"0");
+		clist.add("mpaymentMoney", PayMentMoney.length()>0?PayMentMoney.toString():"0");
+		clist.add("payFinish", payFinish.length()>0?payFinish.append("1").toString():"1");
+		clist.add("integralOverall", index==null?"":TsData.member.get(index).getPayIntegral());
+		clist.add("cardNumber",ValueUtil.isNotEmpty(vip)?vip.getCardNumber():"");
+		new Server().connect(activity, "userPayment", "ChoiceWebService/services/HHTSocket?/userPayment", clist, new OnServerResponse() {
+			@Override
+			public void onResponse(String result) {
+				getDialog(activity).dismiss();
+			//	账单号，支付方式编码，数量， 支付金额 
+				final String[] str=ValueUtil.isEmpty(result)?null:result.split("@");
+				if(str!=null&&str[0].equals("0")){//判断是否支付成功
+					String mes=activity.getString(R.string.pay_success);
+					if(zhaoL>0){//判断是否需要找零
+						mes=activity.getString(R.string.pay_success_zhaoL)+zhaoL+activity.getString(R.string.money_unit);
+					}
+					TsData.isEnd=true;
+					new VipRecordUtil().delHandle(activity, ble.getString("tableNum"));//删除库总该台位数据
+					new AlertDialog.Builder(activity)//支付完成提示
+					.setTitle(R.string.pay_success)
+					.setMessage(mes)
+					.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+							if(ValueUtil.isEmpty(TsData.coupPay)&&ValueUtil.isEmpty(TsData.member)&&TsData.moneyPay!=null){//判断是否需要开发票
+								invoice(activity,ble.getString("orderId"),zhaoL);//执行开发票
+							}else{
+								backTable(activity);//结束界面
+							}
+						}
+					}).show();
+				}else if(str!=null&&!str[0].equals("0")){
+					Toast.makeText(activity, str[1], Toast.LENGTH_LONG).show();
+				}else{
+					Toast.makeText(activity,R.string.net_error, Toast.LENGTH_LONG).show();
+				}
+			}
+			@Override
+			public void onBeforeRequest() {
+				getDialog(activity).show();
+			}
+		});
+	}
+	/**
+	 * 是否打印发票
+	 */
+	public void invoice(final Activity activity,final String orderId,final Double zhaoL){
+		new AlertDialog.Builder(activity).setTitle(R.string.hint)
+		.setMessage(R.string.whether_the_invoice).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+//				String invoiceFace(String deviceId, String orderId, String invoiceMoney)
+//				输入参数：
+//				deviceId   设备标号
+//				orderId    单号
+//				invoiceMoney  开发票金额
+				BigDecimal big=new BigDecimal(0.0);
+				for(Map.Entry<String,MoneyPay> map:TsData.moneyPay.entrySet()){//循环计算现金金额
+					big=big.add(BigDecimal.valueOf(map.getValue().getPayMoney()));
+				}
+				big=big.subtract(BigDecimal.valueOf(zhaoL));
+				CList<Map<String,String>> data=new CList<Map<String,String>>();
+				data.add("deviceId",SharedPreferencesUtils.getDeviceId(activity));
+				data.add("orderId",orderId);
+				data.add("invoiceMoney",big.toString());
+				new Server().connect(activity, "invoiceFace", "ChoiceWebService/services/HHTSocket?/invoiceFace", data, new OnServerResponse() {
+					@Override
+					public void onResponse(String result) {
+						getDialog(activity).dismiss();
+						String[] res=ValueUtil.isEmpty(result)?null:result.split("@");
+						if(res!=null&&res[0].equals("0")){
+							Toast.makeText(activity, activity.getString(R.string.invoice)+res[1], Toast.LENGTH_LONG).show();
+						}else if(res!=null&&!res[0].equals("0")){
+							Toast.makeText(activity, activity.getString(R.string.invoice)+res[1], Toast.LENGTH_LONG).show();
+						}else{
+							Toast.makeText(activity, R.string.net_error, Toast.LENGTH_LONG).show();
+						}
+						backTable(activity);
+					}
+					
+					@Override
+					public void onBeforeRequest() {
+						getDialog(activity).show();
+					}
+				});
+			}
+		}).setNegativeButton(R.string.cancle,new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				backTable(activity);
+			}
+		}).show();
+	}
+	/**
+	 * 返回方法
+	 * @param activity
+	 */
+	public void backTable(Activity activity){
+		Intent intent=new Intent(activity,MainActivity.class);
+		activity.startActivity(intent);
+		activity.finish();
+	}
+}

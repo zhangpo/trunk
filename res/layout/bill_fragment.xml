@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/BillLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/table_bg_red"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="@string/yidian"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        <LinearLayout
+                android:id="@+id/tableName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="#783305"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/greensName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/greensName"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:id="@+id/greensNum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/greensNum"
+                    android:textColor="@color/white"/>
+
+            <TextView
+                    android:id="@+id/greensPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/greensPrice"
+                    android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <ListView
+                android:id="@+id/BillListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000">
+        </ListView>
+    </LinearLayout>
+
+    <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D3D3D3">
+
+        <LinearLayout
+                android:id="@+id/bill_sum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#003333"/>
+
+            <LinearLayout
+                    android:id="@+id/tangSJE_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|right"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/tangSJE_Text1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/heJJE"
+                        android:textColor="#000000"/>
+
+                <TextView
+                        android:id="@+id/tangSJE_Text2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="#000000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/heJJE_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|right"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/heJJE_Text1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/heJJE"
+                        android:textColor="#000000"/>
+
+                <TextView
+                        android:id="@+id/heJJE_Text2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="#000000"/>
+            </LinearLayout>
+
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#003333"/>
+
+            <LinearLayout
+                    android:id="@+id/moLJE_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|right"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/moLJE_Text1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/moLJE"
+                        android:textColor="#000000"/>
+
+                <TextView
+                        android:id="@+id/moLJE_Text2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="#000000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/yingFJE_Layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|right"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/yingFJE_Text1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/yingFJE"
+                        android:textColor="#000000"/>
+
+                <TextView
+                        android:id="@+id/yingFJE_Text2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="#000000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/zhaoLingLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|right"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/zhaoLText1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="@string/zhaoL"
+                        android:textColor="#000000"/>
+
+                <TextView
+                        android:id="@+id/zhaoLText2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="#000000"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

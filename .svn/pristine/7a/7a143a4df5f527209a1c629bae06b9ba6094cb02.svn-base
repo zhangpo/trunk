@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 菜品附加项item -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_index_top"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <CheckBox
+        android:id="@+id/check_attachs"
+        android:layout_width="fill_parent"
+        android:paddingTop="15dip"
+        android:paddingBottom="15dip"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dip"
+        android:textSize="18sp"
+        android:background="@drawable/setting_item_bg_w2"
+        android:textColor="#000000"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/app_name" />
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/PopWin_phoneNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/PopWin_phoneNumText" />
+
+        <EditText
+            android:id="@+id/PopWin_phoneNumEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:ems="16"
+            android:inputType="phone"
+            android:maxLength="16" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/PopWin_vipNumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:text="@string/PopWin_vipNumText" />
+
+        <Spinner
+            android:id="@+id/PopWin_VipSpinner"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="15dp"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_background"
+            android:layout_weight="2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_viphandle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+ 		android:minWidth="300dp"
+ 		android:layout_marginRight="15dp"
+ 		android:layout_marginLeft="15dp"
+ 		android:layout_gravity="right"
+ 		>
+
+        <Button
+            android:id="@+id/PopWin_VipQueryBut"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginRight="0.5dp"
+            android:padding="9dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button_background"
+            android:text="@string/PopWin_phoneNumBut" />
+
+        <Button
+            android:id="@+id/PopWin_VipCancelBut"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginLeft="0.5dp"
+            android:layout_weight="1"
+            android:padding="9dp"
+            android:background="@drawable/blue_button_background"
+            android:text="@string/vip_cancelBut" />
+    </LinearLayout>
+
+</LinearLayout>

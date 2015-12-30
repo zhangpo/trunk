@@ -1,0 +1,201 @@
+<!-- 菜单主页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lay_main"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/mainactiviyt_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+    <!-- 封面图片 -->
+
+    <!-- 菜品分类标题 -->
+
+    <LinearLayout
+            android:id="@+id/main_view_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/main_table_soText"
+            android:layout_width="fill_parent"
+            android:layout_below="@+id/main_view_title"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+        <!--  <EditText
+             android:id="@+id/main_search_Edit"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/bg_search_edittext"
+             android:ems="10"
+             android:inputType="text"/> -->
+
+        <include layout="@layout/search_top_layout"/>
+    </LinearLayout>
+
+    <GridView
+            android:id="@+id/main_table_gridView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none"
+            android:layout_below="@+id/main_table_soText"
+            android:horizontalSpacing="2dp"
+            android:layout_above="@+id/bottom"
+            android:layout_marginBottom="1dp"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="2dp">
+
+    </GridView>
+
+    <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dip"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/shadow"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+            <Button
+                    android:id="@+id/mainact_btn_logout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/logout"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:visibility="gone"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:drawableTop="@drawable/logout"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+            <Button
+                android:id="@+id/mainact_btn_kaitai"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="@string/state_start"
+                android:layout_weight="1"
+                android:paddingTop="5dp"
+                android:paddingBottom="2dp"
+                android:singleLine="true"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:drawableTop="@drawable/mainmenu_kaitai"
+                android:background="@drawable/mainactivity_button_bg"
+                />
+            <Button
+                    android:id="@+id/mainact_btn_waittai"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/wait_ready_order"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="2dp"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:drawableTop="@drawable/mainmenu_yudingdengwei"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+            <Button
+                    android:id="@+id/mainact_btn_bingtai"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="2dp"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:text="@string/bingtai"
+                    android:drawableTop="@drawable/mainmenu_bingtai"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+            <Button
+                    android:id="@+id/mainact_btn_change"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="2dp"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:text="@string/change_tai"
+                    android:drawableTop="@drawable/mainmenu_huantai"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+            <Button
+                    android:id="@+id/mainact_btn_searchVip"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="2dp"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:text="@string/search_vip"
+                    android:drawableTop="@drawable/mainmenu_huiyuanchaxun"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+            <Button
+                    android:id="@+id/mainact_btn_checkorder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="2dp"
+                    android:singleLine="true"
+                    android:textColor="#fff"
+                    android:textSize="12sp"
+                    android:text="@string/query_bill"
+                    android:drawableTop="@drawable/mainmenu_zhangdanchaxun"
+                    android:background="@drawable/mainactivity_button_bg"
+                    />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+            android:id="@+id/mainact_btn_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:layout_above="@+id/bottom"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/refreshtaiwei"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+    <Button
+            android:id="@+id/mainact_btn_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:layout_above="@+id/bottom"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/should_cheak_mini"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="60dp"
+            />
+
+</RelativeLayout>

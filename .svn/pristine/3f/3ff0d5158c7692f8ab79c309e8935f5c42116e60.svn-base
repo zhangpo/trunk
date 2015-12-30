@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/vip_layout8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+     <Button
+         android:id="@+id/vip_cancelBut"
+         style="?android:attr/buttonBarButtonStyle"
+         android:background="@drawable/but_alone_bg"
+         android:textColor="@color/white"
+         android:padding="10dp"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:layout_marginRight="20dp"
+         android:text="@string/vip_cancelBut" />
+
+     <Button
+         android:id="@+id/vip_payBut"
+         style="?android:attr/buttonBarButtonStyle"
+         android:textColor="@color/white"
+         android:layout_width="100dp"
+         android:layout_height="wrap_content"
+         android:background="@drawable/but_alone_bg"
+         android:padding="10dp"
+         android:text="@string/vip_payBut" />
+</LinearLayout>

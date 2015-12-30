@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/searchLl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+        <EditText
+                android:id="@+id/editSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search_edittext"/>
+    </LinearLayout>
+
+    <GridView
+            android:id="@+id/mainGridView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:horizontalSpacing="5dip"
+            android:numColumns="5"
+            android:listSelector="#00000000"
+            android:drawSelectorOnTop="true"
+            android:verticalSpacing="5dip"
+            android:visibility="visible"/>
+
+</LinearLayout>

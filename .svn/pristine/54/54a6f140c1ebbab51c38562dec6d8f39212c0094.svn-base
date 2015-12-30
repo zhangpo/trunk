@@ -1,0 +1,851 @@
+package cn.com.choicesoft.activity;
+
+import java.io.File;
+import java.util.Date;
+import java.util.Map;
+
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Instrumentation;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.TextView;
+import android.widget.Toast;
+import cn.com.choicesoft.R;
+import cn.com.choicesoft.constants.Constants;
+import cn.com.choicesoft.util.*;
+import cn.com.choicesoft.view.*;
+import cn.com.choicesoft.view.IpSettingDialog.DialogIpClickListener;
+import cn.com.choicesoft.view.SoftSettingDialog.DialogClickListener;
+
+/**
+ * 登录界面
+ */
+public class WelcomeActivity extends FragmentActivity implements OnClickListener{
+
+	private static int RESULT_LOAD_IMAGE = 1;
+	private static int RESULT_LEFT_IMAGE = 100;
+	
+	private Button setting, login,one,tow,three,four,five,six,seven,eight,nine,zero,succeed,reset,delete;
+	private EditText userName, userPassword;
+	private LoadingDialog mDialog = null;
+	private LoadingDialog loginDialog = null;
+	private Server server;
+	private SoftSettingDialog softset = null;
+	private RelativeLayout welcomelayout;
+	private LinearLayout linearLayout;//登陆输入界面
+	private TextView androidIDView;//该台设备的机器码
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+        CSExceptionHandler.instance().init(getApplicationContext());//开启应用错误记录
+		ExitApplication.getInstance().addActivity(this);
+		new LanguageSetting().setting(this);
+        if (ChioceActivity.ispad) {
+        	setContentView(R.layout.activity_welcome_pad);
+		} else {
+			setContentView(R.layout.activity_welcome);
+		}
+        String path;
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            path= Constants.RES_PATH_MEMORY_DIR;
+        }else{
+            path=Constants.RES_PATH_SDCARD_DIR;
+        }
+        File file=new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+		initView();
+		initListener();
+		initLayout();
+		initData();
+		
+	}
+
+
+	@Override
+	protected void onResume() {
+		setBackground();
+		super.onResume();
+	}
+
+	/**
+	 * 初始化界面
+	 */
+	public void initLayout(){
+		DisplayMetrics dmm = new DisplayMetrics();
+		// 获取窗口属性
+		getWindowManager().getDefaultDisplay().getMetrics(dmm);
+		Double downbl = ChioceActivity.ispad?0.08:0.25;
+		linearLayout.setY(((Double)(dmm.heightPixels*downbl)).floatValue());
+	}
+
+
+	/**
+	 * 初始化数据
+	 */
+	private void initData() {
+		androidIDView.setText(DeviceUuidFactory.getPhysicalId(this));
+		
+		mDialog = new LoadingDialogStyle(this, "");
+		mDialog.setCancelable(true);
+		
+		loginDialog = new LoadingDialogStyle(this, this.getString(R.string.in_the_login));
+		loginDialog.setCancelable(true);
+		
+		//注册用的
+		boolean isRegistered = SharedPreferencesUtils.getIsRegister(this);
+		if(isRegistered){
+			setting.setVisibility(View.VISIBLE);
+		}else{
+			//调用接口去注册
+//			CList<Map<String, String>> clists = new CList<Map<String,String>>();
+//			clists.add("uuid", androidIDView.getText().toString());
+//			new Server().connect(this, Constants.FastMethodName.activate_METHODNAME, Constants.FastWebService.Activate_WSDL, clists, new OnServerResponse() {
+//				
+//				@Override
+//				public void onResponse(String result) {
+//					mDialog.dismiss();
+//					Toast.makeText(WelcomeActivity.this, result, Toast.LENGTH_SHORT).show();
+//				}
+//				
+//				@Override
+//				public void onBeforeRequest() {
+//					mDialog.show();
+//				}
+//			});
+		}
+		
+		
+		softset = SoftSettingDialog.newInstance(WelcomeActivity.this.getString(R.string.app_setting), new DialogClickListener() {
+			
+			@Override
+			public void doUpdatedateItemClick() {
+				updateForFTP();
+			}
+			@Override
+			public void doTableClassify(final TextView classifyText) {
+				LinearLayout layout=(LinearLayout)WelcomeActivity.this.getLayoutInflater().inflate(R.layout.table_classify_set, null);
+				RadioGroup radio=(RadioGroup)layout.findViewById(R.id.table_Radio);
+				RadioButton radiobut=(RadioButton)layout.findViewById(R.id.table_classify_lc);
+				radiobut.setVisibility(View.GONE);
+				radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(RadioGroup paramRadioGroup, int paramInt) {
+						if(paramInt==R.id.table_classify_area){
+							SharedPreferencesUtils.setTableClass(WelcomeActivity.this, "1");
+							classifyText.setText(R.string.area);
+						}else{
+							SharedPreferencesUtils.setTableClass(WelcomeActivity.this, "2");
+							classifyText.setText(R.string.state);
+						}
+						backKey();
+					}
+				});
+				RadioButton area=(RadioButton)layout.findViewById(R.id.table_classify_area);
+				RadioButton state=(RadioButton)layout.findViewById(R.id.table_classify_state);
+				if(SharedPreferencesUtils.getTableClass(WelcomeActivity.this).equals("1")){
+					area.setChecked(true);
+				}else{
+					state.setChecked(true);
+				}			
+				new AlertDialog.Builder(WelcomeActivity.this,R.style.edittext_dialog).setTitle(R.string.settinggroup).setView(layout).show();
+			}
+			@Override
+			public void doIpItemClick(int typ) {
+                if(typ==1) {
+                    IpSettingDialog ipset = IpSettingDialog.newInstance(WelcomeActivity.this.getString(R.string.ip_setting), new DialogIpClickListener() {
+                        @Override
+                        public void doPositiveClick(String ipaddress, String port) {
+                            String ip = "^\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+                                    "((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)" +
+                                    "\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]" +
+                                    "\\d|25[0-5])\\b$";
+                            String pt = "^([0-9]|[1-9]\\d|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]" +
+                                    "\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$";
+                            if (!ValueUtil.isEmpty(ipaddress) && !ValueUtil.isEmpty(port)) {
+                                if (!ipaddress.matches(ip)) {
+                                    ToastUtil.toast(WelcomeActivity.this, R.string.ip_error);
+                                    return;
+                                } else if (!port.matches(pt)) {
+                                    ToastUtil.toast(WelcomeActivity.this, R.string.port_error);
+                                    return;
+                                }
+                                String result = ipaddress + ":" + port;
+                                SharedPreferencesUtils.setServerAddress(WelcomeActivity.this, result);
+                                Toast.makeText(WelcomeActivity.this, R.string.setting_success, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(WelcomeActivity.this, R.string.input_not_null, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void doNegativeClick() {
+
+                        }
+                    });
+                    ipset.setCancelable(false);
+                    ipset.show(getSupportFragmentManager(), "dialog");
+                }else{
+                    HdIpSettingDialog ipset = HdIpSettingDialog.newInstance(WelcomeActivity.this.getString(R.string.ip_setting), new HdIpSettingDialog.DialogHdIpClickListener() {
+
+                        @Override
+                        public void doPositiveClick(String ipaddress) {
+                            SharedPreferencesUtils.setWaitUrl(WelcomeActivity.this, ipaddress);
+                            Toast.makeText(WelcomeActivity.this, R.string.setting_success, Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void doNegativeClick() {
+                        }
+                    });
+                    ipset.setCancelable(false);
+                    ipset.show(getSupportFragmentManager(), "dialog");
+                }
+			}
+			
+			@Override
+			public void doFtpItemClick() {
+				final AlertDialog dialog;
+				View layout = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.dia_ftpsetting, null);
+				final EditText etUserName = (EditText) layout.findViewById(R.id.dia_et_ftpsettingusername);
+				final EditText etPwd = (EditText) layout.findViewById(R.id.dia_et_ftpsettingpwd);
+				final EditText etIp = (EditText) layout.findViewById(R.id.dia_et_ftpsettingip);
+				
+				StringBuilder sb = new StringBuilder();
+				sb.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpUsername(WelcomeActivity.this))?SharedPreferencesUtils.getFtpUsername(WelcomeActivity.this):"")
+				.append(":")
+				.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpPwd(WelcomeActivity.this))?SharedPreferencesUtils.getFtpUsername(WelcomeActivity.this):"")
+				.append("@")
+				.append(ValueUtil.isNotEmpty(SharedPreferencesUtils.getFtpIp(WelcomeActivity.this))?SharedPreferencesUtils.getFtpIp(WelcomeActivity.this):"");
+				
+				final Button  ensurebuton = (Button)layout.findViewById(R.id.dia_btn_ftpsetcertainbtn);
+				final Button  canclebuton = (Button)layout.findViewById(R.id.dia_btn_ftpsetcancelbtn);
+				dialog = new AlertDialog.Builder(WelcomeActivity.this, R.style.edittext_dialog).setTitle(R.string.please_setting_ftp_adds).setMessage(WelcomeActivity.this.getString(R.string.current_ftp_adds) + sb.toString()).setView(layout).create();
+				ensurebuton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String ftpuserName = etUserName.getText().toString();
+						String ftppassword = etPwd.getText().toString();
+						String ftpipValue = etIp.getText().toString();
+						String perl="^\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+								"((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)" +
+								"\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]" +
+								"\\d|25[0-5])\\b:([0-9]|[1-9]\\d|[1-9]\\d{2}|[1-9]\\d{3}|[1-5]" +
+								"\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$";
+						if(ValueUtil.isNotEmpty(ftpipValue)&&ftpipValue.matches(perl)){
+							SharedPreferencesUtils.setFtpIp(WelcomeActivity.this, ftpipValue);
+							SharedPreferencesUtils.setFtpUsername(WelcomeActivity.this, ftpuserName);
+							SharedPreferencesUtils.setFtpPwd(WelcomeActivity.this, ftppassword);
+							Toast.makeText(WelcomeActivity.this, R.string.setting_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}else{
+							Toast.makeText(WelcomeActivity.this,R.string.ftp_example,Toast.LENGTH_SHORT).show();
+						}
+					}
+						
+				});
+				canclebuton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				
+				dialog.show();
+				
+				
+			}
+			
+			@Override
+			public void doFinishClick() {
+			}
+			
+			@Override
+			public void doDeviceRegisterClick() {
+				final String physicalId = SharedPreferencesUtils.getPhysicalId(WelcomeActivity.this);
+				Log.i("唯一标识", physicalId);
+				CList<Map<String, String>> params1 = new CList<Map<String,String>>();
+				params1.add("handvId", physicalId);
+				Server serverRegister = new Server();
+				serverRegister.connect(WelcomeActivity.this, Constants.FastMethodName.REGISTERDEVICEID_METHODNAME, Constants.FastWebService.REGISTER_WSDL, params1, new OnServerResponse() {
+					
+					@Override
+					public void onResponse(String result) {
+						mDialog.dismiss();
+						if(ValueUtil.isNotEmpty(result)){
+							String getData[] = result.split("@");
+							if(getData[0].equals("0")){
+								Toast.makeText(WelcomeActivity.this, getData[1], Toast.LENGTH_SHORT).show();//注册成功，请激活后使用
+							}else if(!getData[0].equals("0")){
+								Toast.makeText(WelcomeActivity.this, getData[1], Toast.LENGTH_SHORT).show();//该设备已注册
+							}
+						}else{
+							Toast.makeText(WelcomeActivity.this, R.string.net_error, Toast.LENGTH_SHORT).show();//连不上网
+						}
+					}
+					
+					@Override
+					public void onBeforeRequest() {
+						mDialog.show();
+					}
+				});
+			}
+			
+			@Override
+			public void doDeviceEncodeClick() {
+				AlertDialog.Builder builder = new Builder(WelcomeActivity.this,R.style.edittext_dialog);
+				View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.device_number_layout, null);
+				final EditText editText = (EditText) view.findViewById(R.id.devicenumber_et_layout);
+				Button ensurebutton = (Button)view.findViewById(R.id.dia_btn_devicesetcertainbtn);
+				Button canclebutton = (Button)view.findViewById(R.id.dia_btn_devicesetcancelbtn);
+				
+				String encodeStr = SharedPreferencesUtils.getDeviceId(WelcomeActivity.this);//得到设备编号
+				builder.setTitle(R.string.encodesetting).setMessage(WelcomeActivity.this.getString(R.string.current_encode) + encodeStr);
+				builder.setView(view);
+				final AlertDialog dialog =builder.create();
+				
+				ensurebutton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String deviceNumber = editText.getText().toString();
+						if(ValueUtil.isEmpty(deviceNumber)){
+							Toast.makeText(WelcomeActivity.this,R.string.input_not_null, Toast.LENGTH_SHORT).show();
+							return;
+						}else{
+							//在此处将deviceId存放进SharedPreferences
+							SharedPreferencesUtils.setDeviceId(WelcomeActivity.this, deviceNumber);
+							Toast.makeText(WelcomeActivity.this, R.string.encodesetting_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}
+					}
+				});
+				canclebutton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				dialog.show();
+				
+			}
+			@Override
+			public void doSetBackground() {
+				Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+				startActivityForResult(i, RESULT_LOAD_IMAGE);
+			}
+			
+			
+			
+			//赠送授权
+			@Override
+			public void doPresentAuth() {
+				View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.dia_presentsetting_auth, null);
+				final EditText presentRange = (EditText) view.findViewById(R.id.dia_presentauth_range);
+				Button certainBtn = (Button) view.findViewById(R.id.dia_btn_presentsetcertainbtn);
+				Button cancelBtn = (Button) view.findViewById(R.id.dia_btn_presentsetcancelbtn);
+				AlertDialog.Builder builder = new Builder(WelcomeActivity.this,R.style.edittext_dialog);
+				builder.setTitle(R.string.setting_give_money).setMessage(WelcomeActivity.this.getString(R.string.current_give_money)+SharedPreferencesUtils.getGiftAuth(WelcomeActivity.this)).setView(view);
+				final AlertDialog dialog =builder.create();
+				certainBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String giftStr = presentRange.getText().toString();
+						if(ValueUtil.isEmpty(giftStr)){
+							Toast.makeText(WelcomeActivity.this, R.string.input_not_null, Toast.LENGTH_SHORT).show();
+						}else{
+							SharedPreferencesUtils.setGiftAuth(WelcomeActivity.this, giftStr);
+							Toast.makeText(WelcomeActivity.this, R.string.setting_give_money_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}
+					}
+				});
+				cancelBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				dialog.show();
+			}
+			
+			
+			@Override
+			public void doShopEncode() {
+				View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.dia_shopencode_encode, null);
+				final EditText shopencode = (EditText) view.findViewById(R.id.dia_shopcode_user_input);
+				Button certainBtn = (Button) view.findViewById(R.id.dia_btn_shopencodecertainbtn);
+				Button cancelBtn = (Button) view.findViewById(R.id.dia_btn_shopencodecancelbtn);
+				AlertDialog.Builder builder = new Builder(WelcomeActivity.this,R.style.edittext_dialog);
+				builder.setTitle(R.string.dia_shopencode_title).setMessage(WelcomeActivity.this.getString(R.string.current_num)+SharedPreferencesUtils.getShopEncode(WelcomeActivity.this)).setView(view);
+				final AlertDialog dialog =builder.create();
+				certainBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String shopEncodeStr = shopencode.getText().toString();
+						if(ValueUtil.isNotEmpty(shopEncodeStr)){
+							SharedPreferencesUtils.setShopEncode(WelcomeActivity.this, shopEncodeStr);
+							Toast.makeText(WelcomeActivity.this, R.string.store_num_setting_success, Toast.LENGTH_SHORT).show();
+							dialog.dismiss();
+						}else{
+							Toast.makeText(WelcomeActivity.this, R.string.input_not_null, Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
+				
+				cancelBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.dismiss();
+					}
+				});
+				
+				dialog.show();
+			}
+			@Override
+			public void reSetBackground() {
+				reSetBackgound();
+			}
+			@Override
+			public void doSetLeftbg() {
+				Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				startActivityForResult(i, RESULT_LEFT_IMAGE);
+			}
+			@Override
+			public void reSetLeftbg() {
+				SharedPreferencesUtils.setLeftBgPath(WelcomeActivity.this,"NotFind");
+			}
+			
+		});
+		softset.setCancelable(false);
+		
+	}
+
+	/**
+	 * 初始化控件
+	 */
+	private void initView() {
+		userName = (EditText) findViewById(R.id.userName);
+		userPassword = (EditText) findViewById(R.id.userPassword);
+        if (ChioceActivity.ispad) {
+    		EditTextUtil.hideKeyboard(userName);
+    		EditTextUtil.hideKeyboard(userPassword);//隐藏软键盘
+		}
+		setting = (Button) findViewById(R.id.setting);
+		login = (Button) findViewById(R.id.welcome_login);
+		one = (Button) findViewById(R.id.welcome_one);
+		tow = (Button) findViewById(R.id.welcome_tow);
+		three = (Button) findViewById(R.id.welcome_three);
+		four = (Button) findViewById(R.id.welcome_four);
+		five = (Button) findViewById(R.id.welcome_five);
+		six = (Button) findViewById(R.id.welcome_six);
+		seven = (Button) findViewById(R.id.welcome_seven);
+		eight = (Button) findViewById(R.id.welcome_eight);
+		nine = (Button) findViewById(R.id.welcome_nine);
+		zero = (Button) findViewById(R.id.welcome_zero);
+		succeed = (Button) findViewById(R.id.welcome_succeed);
+		delete = (Button) findViewById(R.id.welcome_delete);
+		reset = (Button) findViewById(R.id.welcome_reset);
+		welcomelayout = (RelativeLayout)findViewById(R.id.welcome_activity_layout);
+		//键盘框
+		linearLayout=(LinearLayout)findViewById(R.id.welcome_Layout);
+		androidIDView = (TextView) this.findViewById(R.id.welcome_tv_androidId);
+	}
+
+	/**
+	 * 初始化事件
+	 */
+	private void initListener() {
+		setting.setOnClickListener(this);
+		login.setOnClickListener(this);
+		one.setOnClickListener(this);
+		tow.setOnClickListener(this);
+		three.setOnClickListener(this);
+		four.setOnClickListener(this);
+		five.setOnClickListener(this);
+		six.setOnClickListener(this);
+		seven.setOnClickListener(this);
+		eight.setOnClickListener(this);
+		nine.setOnClickListener(this);
+		zero.setOnClickListener(this);
+		succeed.setOnClickListener(this);
+		delete.setOnClickListener(this);
+		reset.setOnClickListener(this);
+	}
+
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.welcome_login:
+			loginClick();
+			break;
+		case R.id.setting:
+			LinearLayout layout=(LinearLayout)this.getLayoutInflater().inflate(R.layout.verify_pwd, null);
+			Button confirm=(Button)layout.findViewById(R.id.verify_pwd_confirm);
+			Button cancel=(Button)layout.findViewById(R.id.verify_pwd_cancel);
+			final cn.com.choicesoft.view.ClearEditText pwdEdit=(ClearEditText)layout.findViewById(R.id.verify_pwd_Edit);
+			final AlertDialog alert=new AlertDialog.Builder(this,R.style.edittext_dialog).setTitle(R.string.pwd_ver).setView(layout).show();
+			confirm.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View paramView) {
+					String pwd=pwdEdit.getText().toString();
+					String forPwd=DateFormat.getStringByDate(DateFormat.getDateBefore(new Date(), "day", 1, 3),"ddMMyy");
+					if(forPwd.equals(pwd)){
+						alert.dismiss();
+                        if(SharedPreferencesUtils.getChineseSnack(WelcomeActivity.this)==0) {
+                            softset.show(getSupportFragmentManager(), "SoftSettingDialog");
+                        }else{
+                            softset.show(getSupportFragmentManager(), "SoftSettingDialog");
+                        }
+					}else{
+						Toast.makeText(WelcomeActivity.this, R.string.pwd_error, Toast.LENGTH_LONG).show();
+					}
+				}
+			});
+			cancel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View paramView) {
+					backKey();
+				}
+			});
+			break;
+		case R.id.welcome_one:
+			numClick("1");
+			break;
+		case R.id.welcome_tow:
+			numClick("2");
+			break;
+		case R.id.welcome_three:
+			numClick("3");
+			break;
+		case R.id.welcome_four:
+			numClick("4");
+			break;
+		case R.id.welcome_five:
+			numClick("5");
+			break;
+		case R.id.welcome_six:
+			numClick("6");
+			break;
+		case R.id.welcome_seven:
+			numClick("7");
+			break;
+		case R.id.welcome_eight:
+			numClick("8");
+			break;
+		case R.id.welcome_nine:
+			numClick("9");
+			break;
+		case R.id.welcome_zero:
+			numClick("0");
+			break;
+		case R.id.welcome_delete:
+			if(userName.isFocused()){
+				int index=userName.getSelectionStart();
+				if(index>0){
+					userName.getText().delete(index-1, index);
+				}
+			}else if(userPassword.isFocused()){
+				int index=userPassword.getSelectionStart();
+				if(index>0){
+					userPassword.getText().delete(index-1, index);
+				}
+			}
+			break;
+		case R.id.welcome_reset:
+			userName.getText().clear();
+			userPassword.getText().clear();
+			userName.requestFocus();
+			break;
+		case R.id.welcome_succeed:
+			if(userName.isFocused()){
+				userPassword.requestFocus();
+			}else if(userPassword.isFocused()){
+				loginClick();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	/**
+	 * 登陆事件
+	 */
+	public void loginClick(){
+		final String username = userName.getText().toString();
+		if (ValueUtil.isEmpty(username)) {
+			Toast.makeText(WelcomeActivity.this, R.string.please_user_name,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		final String password = userPassword.getText().toString();
+		if (ValueUtil.isEmpty(password)) {
+			Toast.makeText(WelcomeActivity.this, R.string.input_user_password,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		if(ValueUtil.isEmpty(SharedPreferencesUtils.getServerAddress(this))){
+			Toast.makeText(WelcomeActivity.this, R.string.ip_not_null,Toast.LENGTH_SHORT).show();
+			return;
+		}
+		server = new Server();
+		CList<Map<String, String>> clist = new CList<Map<String,String>>();
+		clist.add("deviceId", SharedPreferencesUtils.getDeviceId(this));
+		clist.add("handvId", SharedPreferencesUtils.getPhysicalId(this));
+		clist.add("userCode", username);
+		clist.add("userPass", password);
+		
+		server.connect(WelcomeActivity.this, Constants.FastMethodName.LOGIN_METHODNAME, Constants.FastWebService.LOGIN_WSDL, clist, new OnServerResponse() {
+			
+			@Override
+			public void onResponse(String result) {
+				loginDialog.dismiss();
+				if(!ValueUtil.isEmpty(result)){
+					String [] dataLogin = result.split("@");
+					String flag = dataLogin[0];
+					if(!flag.equals("0")){
+						Toast.makeText(WelcomeActivity.this, dataLogin[1], Toast.LENGTH_SHORT).show();//已在其他设备登录，不能再次登录
+						return;
+					}else if(flag.equals("0")){
+//						0@2014-02-14@2@0@140211002@@点餐员2
+//						营业日@权限编号由IPAD方 面判断是否有权限@抹零金 额保留小数位@pos 版本号 @hht 版本号@操作员名称 
+						SQLiteDatabase database=new DBManager(WelcomeActivity.this).openDatabase();
+						SharedPreferencesUtils.setUserCode(WelcomeActivity.this, username);
+						SharedPreferencesUtils.setPadInformation(WelcomeActivity.this, dataLogin[3], dataLogin[4], dataLogin[5], dataLogin[6],dataLogin[2]);
+						if(dataLogin[4].equals(dataLogin[5])&&database!=null){
+							final Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+							startActivity(intent);
+							WelcomeActivity.this.finish();
+							database.close();
+						}else{
+							AlertDialog dialog=new AlertDialog.Builder(WelcomeActivity.this).setTitle(R.string.hint).setMessage(R.string.if_update_data)
+							.setPositiveButton(R.string.cancle, null)
+							.setNeutralButton(R.string.confirm, new DialogInterface.OnClickListener(){
+								@Override
+								public void onClick(DialogInterface paramDialogInterface,int paramInt) {
+									updateForFTP();
+								}
+							}).show();
+							AlertDialogTitleUtil.gravity(dialog,Gravity.CENTER);
+						}
+					}
+				}else{
+					Toast.makeText(WelcomeActivity.this, R.string.net_error, Toast.LENGTH_SHORT).show();
+				}
+			}
+			
+			@Override
+			public void onBeforeRequest() {
+				loginDialog.show();
+			}
+		});
+	}
+	/**
+	 * 输入事件
+	 * @param num
+	 */
+	public void numClick(String num){
+		if(userName.isFocused()){
+			userName.getText().insert(userName.getSelectionStart(), num);
+		}else if(userPassword.isFocused()){
+			userPassword.getText().insert(userPassword.getSelectionStart(), num);
+		}
+	}
+	
+	/**设置登陆界面背景图片
+	 * 
+	 */
+	private void setBackground() {
+		String path = SharedPreferencesUtils.getbackgroundPath(this);
+    	
+    	if (path!=null &&  !path.equals("NotFind")  ) {
+    		Bitmap bitmap = BitmapFactory.decodeFile(path);
+    		if (bitmap==null || bitmap.getByteCount()==0) {
+    			welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+			}else {
+				BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+	    		welcomelayout.setBackgroundDrawable(bitmapDrawable);
+			}
+		}else if (path!=null&&path.equals("NotFind")) {
+			welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+		}
+		
+	}
+	/**
+	 * 背景重置
+	 */
+	private void reSetBackgound() {
+		SharedPreferencesUtils.setbackgroundPath(WelcomeActivity.this,"NotFind");
+		welcomelayout.setBackgroundResource(R.drawable.bg_login_big);
+	}
+	
+	/**
+	 * 获取图片路径
+	 */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {//欢迎页面背景
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+ 
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+ 
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            ToastUtil.toast(getApplicationContext(), picturePath);
+            cursor.close();
+            if (picturePath!=null) {
+            	SharedPreferencesUtils.setbackgroundPath(WelcomeActivity.this,picturePath);
+			}
+        } else if (requestCode == RESULT_LEFT_IMAGE && resultCode == RESULT_OK && null != data) {//账单查询左侧
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            ToastUtil.toast(getApplicationContext(), picturePath);
+            cursor.close();
+            if (picturePath!=null) {
+            	SharedPreferencesUtils.setLeftBgPath(WelcomeActivity.this,picturePath);
+			}
+        	
+		}
+    }
+    /**
+     * FTP数据更新
+     */
+    public void updateForFTP(){
+//    	 String updateDataVersion(String deviceId,String userCode,String dataVersion);
+    	final LoadingDialog upDialog=new LoadingDialogStyle(WelcomeActivity.this, this.getString(R.string.update_data));
+    	upDialog.setCancelable(true);
+    	if(SharedPreferencesUtils.getFtpIp(WelcomeActivity.this)!=null){
+    		if(!(SharedPreferencesUtils.getFtpIp(WelcomeActivity.this).split(":").length>1)){
+    			Toast.makeText(WelcomeActivity.this, R.string.ftp_adds_error, Toast.LENGTH_LONG).show();
+    		}
+    		FTPDownLoad load=null;
+			try {
+				load=new FTPDownLoad();
+				load.downLoad(WelcomeActivity.this, SharedPreferencesUtils.getFtpIp(WelcomeActivity.this), SharedPreferencesUtils.getFtpUsername(WelcomeActivity.this), SharedPreferencesUtils.getFtpPwd(WelcomeActivity.this),new FTPDownLoad.ICallBack(){
+					@Override
+					public void runBack() {
+						CList<Map<String,String>> list=new CList<Map<String,String>>();
+						list.add("deviceId",SharedPreferencesUtils.getDeviceId(WelcomeActivity.this));
+						list.add("userCode",SharedPreferencesUtils.getUserCode(WelcomeActivity.this));
+						list.add("dataVersion",SharedPreferencesUtils.getPosVer(WelcomeActivity.this));
+						new Server().connect(WelcomeActivity.this, "updateDataVersion", "ChoiceWebService/services/HHTSocket?/updateDataVersion", list, new OnServerResponse() {
+							@Override
+							public void onResponse(String result) {
+								upDialog.dismiss();
+								String res[] =ValueUtil.isEmpty(result)?null:result.split("@");
+								if(res!=null&&res.length>1){
+									if(res[0].equals("0")){
+										Toast.makeText(WelcomeActivity.this, R.string.update_success, Toast.LENGTH_LONG).show();
+									}else{
+										Toast.makeText(WelcomeActivity.this, res[1], Toast.LENGTH_LONG).show();
+									}
+								}else{
+									Toast.makeText(WelcomeActivity.this, R.string.net_error, Toast.LENGTH_LONG).show();
+								}
+							}
+							@Override
+							public void onBeforeRequest() {
+								upDialog.show();
+							}
+						});
+					}
+					@Override
+					public void loseBack(String msg) {
+						upDialog.dismiss();
+						Looper.prepare();
+						Toast.makeText(WelcomeActivity.this,msg, Toast.LENGTH_LONG).show();
+						Looper.loop();
+					}
+				});
+			} catch (Exception e) {
+				Toast.makeText(WelcomeActivity.this, R.string.update_unsuccess, Toast.LENGTH_LONG).show();
+			}
+		}else{
+			Toast.makeText(WelcomeActivity.this, R.string.ftp_adds_not_null, Toast.LENGTH_LONG).show();
+		}
+    }
+    /**
+     * 两次不连续单击退出应用
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            ExitApp();
+        }
+        return false;
+    }
+    private long exitTime = 0;
+
+    /**
+     * 退出当前应用程序
+     */
+    public void ExitApp() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(this,R.string.exit_app, Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            this.finish();
+            System.exit(0);
+        }
+
+    }
+	/**
+	 * 代码调用Back键
+	 */
+	@SuppressLint("CommitTransaction")
+	public void backKey(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				WelcomeActivity.this.getFragmentManager().beginTransaction();
+				Instrumentation inst = new Instrumentation(); 
+				inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);  
+			}
+		}).start();
+	}
+
+}

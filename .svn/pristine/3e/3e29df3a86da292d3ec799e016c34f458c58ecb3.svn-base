@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#FFFFFF"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+        <Button
+                android:id="@+id/one"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1"/>
+
+        <Button
+                android:id="@+id/two"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2"/>
+
+        <Button
+                android:id="@+id/three"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3"/>
+
+        <Button
+                android:id="@+id/four"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4"/>
+
+        <Button
+                android:id="@+id/five"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"/>
+
+        <Button
+                android:id="@+id/six"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6"/>
+
+        <Button
+                android:id="@+id/seven"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="7"/>
+
+        <Button
+                android:id="@+id/eight"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8"/>
+
+        <Button
+                android:id="@+id/nine"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="9"/>
+
+        <Button
+                android:id="@+id/zero"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="22sp"/>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#CCCCCC">
+
+        <Button
+                android:id="@+id/guodi"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="锅底"
+                android:textColor="#000000"/>
+
+        <Button
+                android:id="@+id/liangcai"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="凉菜"
+                android:textColor="#000000"/>
+
+        <Button
+                android:id="@+id/roulei"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="肉类"
+                android:textColor="#000000"/>
+
+        <Button
+                android:id="@+id/xiaoliao"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="小料"
+                android:textColor="#000000"/>
+
+        <Button
+                android:id="@+id/taocan"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="套餐"
+                android:textColor="#000000"/>
+
+        <Button
+                android:id="@+id/jiushui"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/bg_refuse"
+                android:text="酒水"
+                android:textColor="#000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <EditText
+                android:id="@+id/editSearch"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_edittext"/>
+
+        <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索"
+                android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <ListView
+                android:id="@+id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+        <GridView
+                android:id="@+id/gridview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+        <TextView
+                android:id="@+id/nodata"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="没有符合条件的数据"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:gravity="right"
+            android:paddingBottom="2dip"
+            android:paddingRight="10dip">
+
+        <Button
+                android:id="@+id/btnBack"
+                android:layout_width="80dip"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/btn_bottom_bg_normal"
+                android:padding="3dip"
+                android:text="返回"
+                android:textColor="#FFFFFF"/>
+
+        <Button
+                android:id="@+id/btnYiDian"
+                android:layout_width="80dip"
+                android:layout_height="fill_parent"
+                android:background="@drawable/btn_bottom_bg_normal"
+                android:padding="3dip"
+                android:text="已点菜品"
+                android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>

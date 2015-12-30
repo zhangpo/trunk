@@ -1,0 +1,262 @@
+package cn.com.choicesoft.chinese.util;
+
+import android.app.Dialog;
+import android.util.Log;
+import cn.com.choicesoft.bean.Food;
+import cn.com.choicesoft.util.CSLog;
+import cn.com.choicesoft.util.ValueUtil;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.ksoap2.serialization.PropertyInfo;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 中餐接口返回结果解析
+ * Created by M.c on 2014/6/11.
+ */
+public class ChineseResultAlt {
+
+    public static Map<String,String> comAlt(SoapObject result){
+        Map<String,String> map=null;
+        PropertyInfo info=null;
+        if(result.getPropertyCount() >0){//有中心信息
+            map=new HashMap<String,String>();
+            int len = ((SoapObject)result.getProperty(0)).getPropertyCount();
+            for(int i = 0;i < len;i++){
+                SoapObject child=((SoapObject)result.getProperty(0));
+                info=new PropertyInfo();
+                child.getPropertyInfo(i,info);
+                map.put(info.getName(),info.getValue().toString());
+            }
+        }
+        return map;
+    }
+    public static String oStrAlt(String oStr){
+        return oStr.substring(oStr.indexOf(":")+1,oStr.lastIndexOf(">"));
+    }
+    public static String oStrAlt2(String oStr){
+        return oStr.substring(oStr.indexOf("<")+1,oStr.lastIndexOf(">"));
+    }
+
+    /**
+     * 账单信息解析
+     * @param oStr
+     * @return Map
+     */
+    public static Map<String,Object> mapAlt(String oStr){
+        try{
+            String[] strs=oStrAlt2(oStr).split(";");
+            Map<String,Object> order=new HashMap<String,Object>();
+            if(ValueUtil.isNotEmpty(strs)&&strs.length==4){
+                order.put("order",strs[0].split(":")[1]);
+                order.put("money",strs[1].split(":")[1]);
+                String[] str=strs[2].split(",");
+                order.put("people",str[0].split(":")[1]);
+                order.put("折扣金额",ValueUtil.isNaNofBigDecimal(str[1].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("服务费",ValueUtil.isNaNofBigDecimal(str[2].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("免项",ValueUtil.isNaNofBigDecimal(str[3].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("包间金额",ValueUtil.isNaNofBigDecimal(str[4].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("抹零金额",ValueUtil.isNaNofBigDecimal(str[5].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("结算金额",ValueUtil.isNaNofBigDecimal(str[6].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("food",mapList(strs[3].split(":")[1]));
+            }
+            return order;
+        }catch (Exception e){
+            CSLog.e("解析菜品信息",e.toString());
+        }
+        return null;
+    }
+
+    /**
+     * 菜品明细解析
+     * @param f
+     * @return List<Map>
+     */
+    private static List<Map<String,String>> mapList(String f){
+        String[] foods=f.split("#");
+        List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+        for(String fStr:foods) {
+            String[] fmt = fStr.split("\\^");
+            Map<String, String> food = new HashMap<String, String>();
+            food.put("foodid", fmt[0]);
+            if ("Y".equals(fmt[2].trim())) {//判断划菜
+                food.put("over", fmt[9]);
+            }
+            food.put("urge", "0");//催菜数量
+            if ("Y".equals(fmt[3])) {//菜品状态
+                if (ValueUtil.isNaNofDouble(fmt[5]) == 0) {
+                    food.put("rushorcall", "2");//叫
+                } else if (ValueUtil.isNaNofDouble(fmt[5]) > 0) {
+                    food.put("rushorcall", "3");//起
+                    food.put("urge", ValueUtil.isNaNofInteger(fmt[5]) - 1 + "");
+                }
+            } else {
+                food.put("rushorcall", "1");//即
+                if (ValueUtil.isNaNofDouble(fmt[5]) > 0) {//判断催菜
+                    food.put("urge", fmt[5]);
+                }
+            }
+            food.put("tpname", fmt[7]);
+            food.put("pcname", fmt[8]);
+            food.put("pcount", fmt[9]);
+            food.put("price", fmt[10]);
+            food.put("subtotal", fmt[11]);
+            food.put("unit", fmt[13]);
+            food.put("unit2", fmt[14]);//第二单位
+            food.put("modifyflag", fmt[15]);//是否修改了第二单位的数量,N代表没有    Y代表已经修改了
+            food.put("promonum", fmt[16]);//赠送菜品的数量
+            StringBuffer sb = new StringBuffer();
+            for (int i = 19; i < 24; i++) {
+                if (ValueUtil.isNotEmpty(fmt[i]) && !fmt[i].trim().equals("null")) {
+                    sb.append(fmt[i] + "!");
+                }
+            }
+            food.put("fujianame", sb.toString());
+            list.add(food);
+        }
+        return list;
+    }
+
+    /**
+     * 账单信息解析
+     * @param oStr
+     * @return
+     */
+    public static Map<String,Object> foodAlt(String oStr){
+    	Map<String,Object> order=new HashMap<String,Object>();
+        try{
+            String[] strs=oStrAlt2(oStr).split(";");
+            if(ValueUtil.isNotEmpty(strs)&&strs.length==4){
+                order.put("order",strs[0].split(":")[1]);
+                order.put("money",strs[1].split(":")[1]);
+                String[] str=strs[2].split(",");
+                order.put("people",str[0].split(":")[1]);
+                order.put("折扣金额",ValueUtil.isNaNofBigDecimal(str[1].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("服务费",ValueUtil.isNaNofBigDecimal(str[2].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("免项",ValueUtil.isNaNofBigDecimal(str[3].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("包间金额",ValueUtil.isNaNofBigDecimal(str[4].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("抹零金额",ValueUtil.isNaNofBigDecimal(str[5].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                order.put("结算金额",ValueUtil.isNaNofBigDecimal(str[6].split(":")[1]).setScale(2,BigDecimal.ROUND_HALF_UP));
+                if(strs[3].split(":").length>=2){
+                	order.put("food",foodList(strs[3].split(":")[1]));
+                }else{
+                	order.put("food",new ArrayList<Food>());
+                }
+            }
+        }catch (Exception e){
+            CSLog.e("解析菜品信息",e.toString());
+        }
+        return order;
+    }
+
+    /**
+     * 菜品明细解析
+     * @param f
+     * @return Food
+     */
+    private static List<Food> foodList(String f){
+        String[] foods=f.split("#");
+        List<Food> list=new ArrayList<Food>();
+        for(String fStr:foods){
+            String[] fmt=fStr.split("\\^");
+            Food food=new Food();
+            food.setPcode(fmt[0]);
+            if("Y".equals(fmt[2].trim())){//判断划菜
+                food.setOver(fmt[9]);
+            }
+            food.setUrge("0");//催菜数量
+            if("Y".equals(fmt[3])){//菜品状态
+                if(ValueUtil.isNaNofDouble(fmt[5])==0){
+                    food.setRushorcall("2");//叫
+                }else if(ValueUtil.isNaNofDouble(fmt[5])>0){
+                    food.setRushorcall("3");//起
+                    food.setUrge(ValueUtil.isNaNofInteger(fmt[5])-1+"");
+                }
+            }else{
+                food.setRushorcall("1");//即
+                if(ValueUtil.isNaNofDouble(fmt[5])>0){//判断催菜
+                    food.setUrge(fmt[5]);
+                }
+            }
+            food.setTpname(fmt[7]);
+            food.setPcname(fmt[8]);
+            food.setPcount(fmt[9]);//如果是退掉的菜品，返回的数量是0.00
+            food.setPrice(fmt[10]);
+            food.setSubtotal(ValueUtil.isNaNofDouble(fmt[11]));
+            food.setUnit(fmt[13]);
+            food.setUnit2(fmt[14]);//第二单位
+            food.setModifyFlag(fmt[15]);//是否修改了第二单位的数量,N代表没有    Y代表已经修改了
+//            food.setPlusd(ValueUtil.isEmpty(fmt[14])?0:1);
+            food.setPlusd(fmt[15].equals("Y")?1:0);
+            food.setPromonum(fmt[16]);//赠送菜品的数量
+            food.setIsNormalCnt(fmt[17]);//判断是在手机上点的还是在pos收银上点的,退菜的
+            food.setUnit2Cnt(fmt[18]);
+            StringBuffer sb = new StringBuffer();
+            for(int i=19;i<24;i++){
+                if(ValueUtil.isNotEmpty(fmt[i])&&!fmt[i].trim().equals("null")){
+                    sb.append(fmt[i]+"!");
+                }
+            }
+            food.setFujianame(sb.toString());
+            list.add(food);
+        }
+        return list;
+    }
+
+    /**
+     * 点击对话框上的确定按钮时，设置是否让该对话框消失
+     *
+     * @param mDialog
+     * @param isDismiss
+     */
+    public static void setDialogIfDismiss(Dialog mDialog, boolean isDismiss) {
+        try {
+            Field field = mDialog.getClass().getSuperclass().getDeclaredField("mShowing");
+            field.setAccessible(true);
+            // 将mShowing变量设为false，表示对话框已关闭
+            field.set(mDialog, isDismiss);
+            mDialog.dismiss();
+        } catch (Exception e) {
+
+        }
+    }
+    /**
+     * MD5加密
+     * @param str
+     * @return
+     */
+    public static String encryMD5(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte b[] = md.digest();
+
+            int i;
+
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            str = buf.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return str;
+    }
+
+}

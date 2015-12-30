@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="25dp"
+                android:orientation="vertical">
+
+    <EditText
+            android:id="@+id/dia_et_searchtai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:background="@drawable/edittext_bg"
+            android:padding="9dp"
+            android:digits="0123456789,-."
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:textSize="21sp"
+            android:ems="10">
+
+        <requestFocus/>
+    </EditText>
+</RelativeLayout>

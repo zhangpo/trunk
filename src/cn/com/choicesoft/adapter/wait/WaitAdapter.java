@@ -1,0 +1,219 @@
+package cn.com.choicesoft.adapter.wait;
+
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.TextView;
+import cn.com.choicesoft.R;
+import cn.com.choicesoft.bean.wait.Wait;
+import cn.com.choicesoft.util.SharedPreferencesUtils;
+import cn.com.choicesoft.util.SimpleThread;
+import cn.com.choicesoft.util.ToastUtil;
+import cn.com.choicesoft.util.ValueUtil;
+import cn.com.choicesoft.util.wait.PlayVoice;
+import cn.com.choicesoft.util.wait.SocketClient;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * M。c
+ * 2015-04-22
+ * Jnwsczh@163.com
+ */
+public class WaitAdapter extends BaseAdapter {
+    private List<Wait> items=new ArrayList<Wait>();
+    private Context mContext;
+    private LayoutInflater inflater;
+    private ClickQH clickQH;
+    private Map<Integer,String> holderMap=new HashMap<Integer, String>();
+
+    public WaitAdapter(List<Wait> items, Context mContext,ClickQH clickQH) {
+        this.items = items;
+        this.mContext = mContext;
+        this.inflater = LayoutInflater.from(mContext);
+        this.clickQH=clickQH;
+    }
+
+    @Override
+    public int getCount() {
+        return items.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return items.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final Wait wait=items.get(position);
+        final ViewHolder holder;
+        if(convertView == null){
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.wait_list_item,null);
+            holder.hao = (TextView) convertView.findViewById(R.id.wait_item_hao);
+            holder.phone= (TextView) convertView.findViewById(R.id.wait_item_phone);
+            holder.people = (TextView) convertView.findViewById(R.id.wait_item_people);
+            holder.begin= (TextView) convertView.findViewById(R.id.wait_begin_time);
+            holder.time= (TextView) convertView.findViewById(R.id.wait_item_time);
+            holder.jiaohao= (Button) convertView.findViewById(R.id.wait_item_jiaohao_but);
+            holder.chexiao= (Button) convertView.findViewById(R.id.wait_item_repeal_but);
+            holder.jiaohaoCount= (Button) convertView.findViewById(R.id.wait_item_jiaohao_but_num);
+            holder.jiucan= (Button) convertView.findViewById(R.id.wait_item_jiucan_but);
+            holder.guohao= (Button) convertView.findViewById(R.id.wait_item_guohao_but);
+            convertView.setTag(holder);
+        }else{
+            holder=(ViewHolder) convertView.getTag();
+        }
+        if("D".equals(wait.getSta())) {//已就餐 绿色
+            holder.hao.setTextColor(Color.GREEN);
+            holder.chexiao.setVisibility(View.VISIBLE);
+            holder.jiaohao.setVisibility(View.GONE);
+            holder.jiaohaoCount.setVisibility(View.INVISIBLE);
+            holder.jiucan.setVisibility(View.INVISIBLE);
+            holder.guohao.setVisibility(View.INVISIBLE);
+        }else if("C".equals(wait.getSta())){//过号棕色
+            holder.hao.setTextColor(Color.parseColor("#8B4513"));
+            holder.chexiao.setVisibility(View.VISIBLE);
+            holder.jiaohao.setVisibility(View.GONE);
+            holder.jiaohaoCount.setVisibility(View.INVISIBLE);
+            holder.jiucan.setVisibility(View.INVISIBLE);
+            holder.guohao.setVisibility(View.INVISIBLE);
+        }
+        holder.hao.setText(wait.getRec());
+        holder.phone.setText(wait.getTele());
+        holder.people.setText(wait.getPax() + mContext.getString(R.string.people));
+        holder.begin.setText(wait.getBegintime());
+        holder.time.setText(String.format(mContext.getString(R.string.wait_begin_time), wait.getBegintime()));
+        holder.time.setText(String.format(mContext.getString(R.string.before_many_time), wait.getWaittimes()));
+        holder.jiaohao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SimpleThread().setOnThreadRun(new SimpleThread.OnThreadRun() {
+                    @Override
+                    public void onRun(Handler h) {
+                        String TV_IP = SharedPreferencesUtils.getWaitTV(mContext);
+                        Message message=new Message();
+                        if (ValueUtil.isEmpty(TV_IP)||TV_IP.equals("127.0.0.1")||TV_IP.equals("0.0.0.0")) {
+                            PlayVoice.play(mContext, new String[]{wait.getRec()});
+                            message.what=0;
+                            h.sendMessage(message);
+                        }else{
+                            SocketClient client = new SocketClient(TV_IP, 1991);
+                            String result = client.sendMsg("{\"vcode\":\"" + wait.getType().getVcode() + "\",\"call\":\"" + wait.getRec() + "\"}");
+                            client.closeSocket();
+                            if (ValueUtil.isNotEmpty(result) && result.equals("ok")) {
+                                message.what=0;
+                            }else {
+                                message.what=-2;
+                            }
+                            h.sendMessage(message);
+                        }
+                    }
+
+                    @Override
+                    public void onHandleMessage(Message msg) {
+                        if(msg.what==0) {
+                            String count = ValueUtil.isNaNofInteger(holder.jiaohaoCount.getText().toString()) + 1 + "";
+                            holder.jiaohaoCount.setVisibility(View.VISIBLE);
+                            holder.jiaohaoCount.setText(count);
+                            holderMap.put(position, count);
+                            if (clickQH != null) {
+                                clickQH.record(wait.getRec(), count);
+                            }
+                        }else if(msg.what==-1){
+                            ToastUtil.toast(mContext, R.string.tvip_not_null);
+                        }else if(msg.what==-2){
+                            ToastUtil.toast(mContext,R.string.call_error);
+                        }
+                    }
+                }).run();
+            }
+        });
+        holder.jiucan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickQH!=null){
+                    clickQH.quhao(holder.phone.getText().toString(),"D",wait.getRec(),wait.getType().getVcode());
+                }
+            }
+        });
+        holder.guohao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(clickQH!=null){
+                    clickQH.quhao(holder.phone.getText().toString(),"C", wait.getRec(),wait.getType().getVcode());
+                }
+            }
+        });
+        holder.chexiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickQH.quhao(holder.phone.getText().toString(),"A", wait.getRec(),wait.getType().getVcode());
+            }
+        });
+        holder.phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(((TextView) v).getText().toString()));
+                    mContext.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        holder.jiaohaoCount.setVisibility(View.GONE);
+        String amount = null;
+        if(clickQH!=null){
+            amount=clickQH.getCallAmount(wait.getRec());
+        }
+        if(ValueUtil.isNotEmpty(amount)){
+            holder.jiaohaoCount.setVisibility(View.VISIBLE);
+            holder.jiaohaoCount.setText(amount);
+        }
+        if(holderMap.get(position)!=null){
+            holder.jiaohaoCount.setVisibility(View.VISIBLE);
+            holder.jiaohaoCount.setText(holderMap.get(position));
+        }
+        return convertView;
+    }
+
+
+    public interface ClickQH {
+        void quhao(String tele, String sta, String rec,String typ);
+        void record(String code,String count);
+        String getCallAmount(String code);
+    }
+
+    private class ViewHolder{
+        TextView hao;
+        TextView phone;
+        TextView people;
+        TextView begin;
+        TextView time;
+        Button jiaohao;
+        Button chexiao;
+        Button jiaohaoCount;
+        Button jiucan;
+        Button guohao;
+    }
+
+}
